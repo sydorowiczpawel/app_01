@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('rank')->nullable();
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('function')->nullable();
+            $table->string('job_name')->nullable();
             $table->string('coy')->nullable();
             $table->string('platoon')->nullable();
             $table->string('team')->nullable();
