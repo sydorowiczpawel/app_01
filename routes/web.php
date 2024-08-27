@@ -25,6 +25,8 @@ Route::get('/allLeaveForms', [App\Http\Controllers\AdminController::class, 'getL
 Route::get('/unverifiedUsers', [App\Http\Controllers\AdminController::class, 'getUnverified']);
 Route::get('/addSoldier', [App\Http\Controllers\AdminController::class, 'createSoldier']);
 Route::post('/storeSoldier', [App\Http\Controllers\AdminController::class, 'storeUser']);
+Route::get('/editUser/{id}', [App\Http\Controllers\AdminController::class, 'editUser']);
+Route::post('/activateAccount/{id}', [App\Http\Controllers\AdminController::class, 'activateUser']);
 
 // TANK
 // Route::get('/tankslst/{pass_number}', [App\Http\Controllers\TankController::class, 'index']);
@@ -37,7 +39,6 @@ Route::post('/storeSoldier', [App\Http\Controllers\AdminController::class, 'stor
 // USER
 // Route::get('/personalFile/{pass_number}', [App\Http\Controllers\UserController::class, 'index']);
 // Route::get('/personalFile/{pass_number}', [App\Http\Controllers\TankController::class, 'show']);
-// Route::get('/editUser/{id}', [App\Http\Controllers\UserController::class, 'edit']);
 // Route::post('/updateUser/{id}', [App\Http\Controllers\UserController::class, 'update']);
 // Route::delete('/deleteUser/{id}', [App\Http\Controllers\UserController::class, 'destroy']);
 

@@ -173,7 +173,11 @@ class AdminController extends Controller
 //   Shows unverified users
   public function getUnverified()
   {
-      return view ('layouts.admin.adminHome');
+    $user = DB::table('users')
+    ->where('passNumber', null)
+    ->get();
+      return view ('layouts.admin.unverifiedUsers')
+      -> with('user', $user);
   }
 
   /**
@@ -229,9 +233,33 @@ class AdminController extends Controller
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(string $id)
+  public function editUser($id)
   {
-      //
+      // $user = User::find($id);
+
+      $user = DB::table('users')
+        ->where('id', $id)
+        ->get();
+
+      return view('layouts.admin.editUser')
+      ->with('user', $user);
+  }
+
+  public function activateUser(Request $request, $id)
+  {
+
+    $passNumber = $request->input('passNumber');
+    // dd($id);
+
+    DB::table('users')
+        ->where('id', $id)
+        ->update(
+            [
+                'passNumber'=>$passNumber
+            ]
+            );
+
+            return redirect('/allSoldiers');
   }
 
   /**
