@@ -28,15 +28,14 @@ Route::post('/storeSoldier', [App\Http\Controllers\AdminController::class, 'stor
 Route::get('/editUser/{id}', [App\Http\Controllers\AdminController::class, 'editUser']);
 Route::post('/activateAccount/{id}', [App\Http\Controllers\AdminController::class, 'activateUser']);
 
-// TANK
+// VEHICLES
+Route::get('/allVehicles', [App\Http\Controllers\VehicleController::class, 'index']);
+Route::get('/addVehicle', [App\Http\Controllers\VehicleController::class, 'create']);
+Route::post('/storeVehicle', [App\Http\Controllers\VehicleController::class, 'store']);
 // Route::get('/tankslst/{pass_number}', [App\Http\Controllers\TankController::class, 'index']);
-// Route::get('/addTank', [App\Http\Controllers\TankController::class, 'create']);
-// Route::get('/editUser/{id}', [App\Http\Controllers\UserController::class, 'edit']);
-// Route::post('/updateuser/{id}', [App\Http\Controllers\userController::class, 'update']);
-// Route::post('/tankStore/{pass_number}', [App\Http\Controllers\TankController::class, 'store']);
-// Route::delete('/deleteuser/{id}', [App\Http\Controllers\userController::class, 'destroy']);
 
 // USER
+// Route::get('/editUser/{id}', [App\Http\Controllers\UserController::class, 'edit']);
 // Route::get('/personalFile/{pass_number}', [App\Http\Controllers\UserController::class, 'index']);
 // Route::get('/personalFile/{pass_number}', [App\Http\Controllers\TankController::class, 'show']);
 // Route::post('/updateUser/{id}', [App\Http\Controllers\UserController::class, 'update']);

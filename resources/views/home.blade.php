@@ -13,7 +13,6 @@
               {{ session('status') }}
             </div>
           @endif
-
           @if(Auth::user() -> passNumber !== NULL )
           <div class="navbar-nav ms-auto">
 

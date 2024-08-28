@@ -1,66 +1,281 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Laravel - jak zacząć:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+I. Zainstaluj niezbędne oprogramowanie
 
-## About Laravel
+XAMPP:		        Download XAMPP (apachefriends.org)
+VS Code:		    Download Visual Studio Code - Mac, Linux, Windows
+Node.js with npm:	Node.js — Download Node.js® (nodejs.org)
+Composer: 		    https://getcomposer.org/download/
+GitBash:		    https://gitforwindows.org/
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Po instalacji XAMPP należy wskazać systemowi ścieżkę, z której będzie brał php. Trzeba wejść w środowisko uruchomieniowe Windows:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Odszukaj „environment variabes” (zmienne środowiskowe)
+Zaawansowane/zmienne środowiskowe
+W tabeli „zmienne systemowe” odszukaj „path” i kliknij dwukrotnie
+Nowy/ścieżka do php
+W przypadku xampp będzie to C:/xampp/php
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Po instalacji wejdź w GitBash i sprawdź czy wszystkie komponenty są zainstalowane i widoczne. W tym celu należy wpisać:
 
-## Learning Laravel
+npm –v
+php -v
+composer
+laravel -v
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Każde polecenie powinno zwrócić informację o wersji lub spis komend.
+Jeżeli „laravel –v” nie zwraca wersji należy wpisać komendę:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+composer global require laravel/installer
+oraz
+npm install –D vue-loader vue-template-compiler
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+II. Praca z nowym projektem
 
-### Premium Partners
+Otwórz GitBash i wskaż ścieżkę gdzie zainstalowany będzie nowy projekt, np.:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+cd documents/repos
 
-## Contributing
+Utwórz nowy projekt Laravel i nazwij go:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Laravel new projectName
 
-## Code of Conduct
+Przejdź w GitBash do lokalizacji projektu:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+cd projektName
 
-## Security Vulnerabilities
+Utwórz Model z tabelą w bazie oraz kontroler:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+php artisan make:model User –m
+php artisan make:controller UserController -r
 
-## License
+Następnym krokiem będzie migracja bazy danych. W tym celu uruchom XAMPP, uruchom serwer Apache oraz bazę danych MySQL.
+Uruchom zakładkę „Admin” bazy danych MySQL
+Po uruchomieniu się przeglądarki, po lewej stronie są gotowe bazy danych, ale Ty utwórz swoją własną na potrzeby projektu. Pamiętaj!!! To są bazy lokalne. Na innych komputerach ich nie będzie. Kontynuując projekt na innym komputerze musisz utworzyć bazę o takiej samej nazwie.
+Po utworzeniu bazy danych wróć do GitBash i uruchom komendę:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+php artisan migrate
+
+Wpisz kolejno poniższe polecenia:
+
+composer require laravel/ui
+php artisan ui vue –auth
+
+Uruchom drugą console GitBash
+W pierwszej wpisz:
+
+php artisan serve
+
+W drugiej wpisz:
+
+npm install && npm run dev
+
+Migracje
+php artisan migrate		- tworzy migrację bazy danych
+php artisan migrate:refresh	- aktualizuje bazę danych o nowe elementy
+php artisan migrate:rollback	- cofa ostatnią migrację
+
+III. GitHub
+
+git config --global user.name "Paweł Sydorowicz"
+git config --global user.email pawelsydorowicz@gmail.com
+
+Robienie clone`a i praca na branchu:
+git clone https://github.com/sydorowiczpawel/nazwa_repo.git
+
+Jak nie ma brancha który chcesz pullować:
+
+git remote update origin - powinny pokazać się wszystkie branche,
+git checkout -b nazwabrancha remotes/origin/nazwabrancha
+
+Sprawdzasz na jakim branchu jesteś (musisz być na masterze)
+git checkout
+Pobierasz najnowsza wersje projektu
+git pull
+Tworzysz branch do pracy
+git branch nazwabrancha
+Zmieniasz branch na nowo utworzony
+git checkout nazwabrancha
+Kończenie pracy na branchu i commit
+git status
+git add --all
+git commit -m "..."
+git checkout master
+git merge nazwabrancha
+git log --graph --decorate --all --oneline
+Zmieniasz brancha na master
+git checkout master
+git merge nazwabranchanaktorympracowales
+git log --graph --decorate --all --oneline
+Usuwanie brancha 
+git branch -D nazwabrancha
+Wrzucasz wszystko na serwer 
+git push
+
+IV. SKRYPT DO BAZY DANYCH
+
+/* Użytkownicy */
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA002', 'kapitan', 'Daniel', 'Gorczyca', 'dowódca kompanii', '26 kzs', 'n/d', 'n/d', 'commander@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA003', 'st. chor. szt.', 'Daniel', 'Gorczyca', 'szef kompanii', '26 kzs', 'n/d', 'n/d', 'szefKompanii@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA004', 'kapitan', 'Daniel', 'Gorczyca', 'technik kompanii', '26 kzs', 'n/d', 'n/d', 'technikKompanii@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA005', 'kapitan', 'Daniel', 'Gorczyca', 'technik uzbrojenia', '26 kzs', 'n/d', 'n/d', 'technikUzbrojenia@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA006', 'kapitan', 'Daniel', 'Gorczyca', 'dowódca plutonu', '26 kzs', 'I', 'n/d', 'dowodcaP1@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA007', 'kapitan', 'Daniel', 'Gorczyca', 'dowódca plutonu', '26 kzs', 'II', 'n/d', 'dowodcaP2@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA009', 'kapitan', 'Daniel', 'Gorczyca', 'dowódca plutonu', '26 kzs', 'III', 'n/d', 'dowodcaP3@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA008', 'kapitan', 'Daniel', 'Gorczyca', 'dowodca plutonu', '26 kzs', 'IV', 'n/d', 'dowodcaP4@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA010', 'kapitan', 'Daniel', 'Gorczyca', 'pomocnik dowódcy plutonu', '26 kzs', 'I', 'n/d', 'pomocnikDP1@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA011', 'kapitan', 'Daniel', 'Gorczyca', 'pomocnik dowódcy plutonu', '26 kzs', 'II', 'n/d', 'pomocnikDP2@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA012', 'kapitan', 'Daniel', 'Gorczyca', 'pomocnik dowódcy plutonu', '26 kzs', 'III', 'n/d', 'pomocnikDP3@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA013', 'kapitan', 'Daniel', 'Gorczyca', 'pomocnik dowódcy plutonu', '26 kzs', 'IV', 'n/d', 'pomocnikDPIV@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA014', 'kapitan', 'Daniel', 'Gorczyca', 'instruktor', '26 kzs', 'I', 'n/d', 'instruktorP1@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA015', 'kapitan', 'Daniel', 'Gorczyca', 'instruktor', '26 kzs', 'II', 'n/d', 'instruktorP2@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA016', 'kapitan', 'Daniel', 'Gorczyca', 'instruktor', '26 kzs', 'III', 'n/d', 'instruktorP3@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA017', 'kapitan', 'Daniel', 'Gorczyca', 'instruktor', '26 kzs', 'IV', 'n/d', 'instruktorP4@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA018', 'kapitan', 'Daniel', 'Gorczyca', 'kierowca – starszy instruktor', '26 kzs', 'I', 'pierwsza', 'kierowcasi1@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA019', 'kapitan', 'Daniel', 'Gorczyca', 'kierowca – starszy instruktor', '26 kzs', 'II', 'druga', 'kierowcasi2@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA020', 'kapitan', 'Daniel', 'Gorczyca', 'kierowca – starszy instruktor', '26 kzs', 'III', 'trzecia', 'kierowcasi3@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA021', 'kapitan', 'Daniel', 'Gorczyca', 'kierowca – starszy instruktor', '26 kzs', 'IV', 'czwarta', 'kierowcasi4@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA022', 'kapitan', 'Daniel', 'Gorczyca', 'kierowca', '26 kzs', 'I', 'pierwsza', 'kierowca1@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA023', 'kapitan', 'Daniel', 'Gorczyca', 'kierowca', '26 kzs', 'II', 'druga', 'kierowca2@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA024', 'kapitan', 'Daniel', 'Gorczyca', 'kierowca', '26 kzs', 'III', 'trzecia', 'kierowca3@wp.pl', 'password');
+
+INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
+Values ('AA025', 'kapitan', 'Daniel', 'Gorczyca', 'kierowca', '26 kzs', 'IV', 'czwarta', 'kierowca4@wp.pl', 'password');
+
+/* Pojazdy */
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Radziecki', 'T72', 'UA0001');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Radziecki', 'T72', 'UA0002');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Radziecki', 'T72', 'UA0003');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Radziecki', 'T72', 'UA0004');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Radziecki', 'T72', 'UA0005');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Radziecki', 'T72', 'UA0006');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Radziecki', 'T72', 'UA0007');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Radziecki', 'T72', 'UA0008');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Radziecki', 'T72', 'UA0009');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Radziecki', 'T72', 'UA0010');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Polski', 'PT91', 'UA0011');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Polski', 'PT91', 'UA0012');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Polski', 'PT91', 'UA0013');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Polski', 'PT91', 'UA0014');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Polski', 'PT91', 'UA0015');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Polski', 'PT91', 'UA0016');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Polski', 'PT91', 'UA0017');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Polski', 'PT91', 'UA0018');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Polski', 'PT91', 'UA0019');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'Polski', 'PT91', 'UA0020');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'General Dynamics', 'Abrams M1A2 SEPv3', 'UA0021');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'General Dynamics', 'Abrams M1A2 SEPv3', 'UA0022');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'General Dynamics', 'Abrams M1A2 SEPv3', 'UA0023');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'General Dynamics', 'Abrams M1A2 SEPv3', 'UA0024');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'General Dynamics', 'Abrams M1A2 SEPv3', 'UA0025');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'General Dynamics', 'Abrams M1A2 SEPv3', 'UA0026');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'General Dynamics', 'Abrams M1A2 SEPv3', 'UA0027');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'General Dynamics', 'Abrams M1A2 SEPv3', 'UA0028');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'General Dynamics', 'Abrams M1A2 SEPv3', 'UA0029');
+
+Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
+Values ('AA002', 'General Dynamics', 'Abrams M1A2 SEPv3', 'UA0030');

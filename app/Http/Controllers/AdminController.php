@@ -134,6 +134,10 @@ class AdminController extends Controller
     ->where ('job_name', 'kierowca')
     ->get();
 
+    $others= DB::table('users')
+    ->where ('job_name', NULL)
+    ->get();
+
     return view ('layouts.admin.allSoldiers')
     ->with('commander', $commander)
     ->with('boss', $boss)
@@ -155,6 +159,7 @@ class AdminController extends Controller
     ->with('p4_pdp', $p4_pdp)
     ->with('p4_od', $p4_od)
     ->with('p4_d', $p4_d)
+    ->with('others', $others)
     ;
   }
 
