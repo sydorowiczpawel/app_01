@@ -35,7 +35,9 @@ Route::post('/storeVehicle', [App\Http\Controllers\VehicleController::class, 'st
 // Route::get('/tankslst/{pass_number}', [App\Http\Controllers\TankController::class, 'index']);
 
 // USER
-// Route::get('/editUser/{id}', [App\Http\Controllers\UserController::class, 'edit']);
+Route::get('/editSoldier/{id}', [App\Http\Controllers\UserController::class, 'edit']);
+Route::get('/assignSoldier/{id}', [App\Http\Controllers\UserController::class, 'assign']);
+Route::post('/storeAssigns/{id}', [App\Http\Controllers\UserController::class, 'store']);
 // Route::get('/personalFile/{pass_number}', [App\Http\Controllers\UserController::class, 'index']);
 // Route::get('/personalFile/{pass_number}', [App\Http\Controllers\TankController::class, 'show']);
 // Route::post('/updateUser/{id}', [App\Http\Controllers\UserController::class, 'update']);
