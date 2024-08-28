@@ -39,7 +39,7 @@ Route::post('/storeVehicle', [App\Http\Controllers\VehicleController::class, 'st
 // Route::get('/personalFile/{pass_number}', [App\Http\Controllers\UserController::class, 'index']);
 // Route::get('/personalFile/{pass_number}', [App\Http\Controllers\TankController::class, 'show']);
 // Route::post('/updateUser/{id}', [App\Http\Controllers\UserController::class, 'update']);
-// Route::delete('/deleteUser/{id}', [App\Http\Controllers\UserController::class, 'destroy']);
+Route::get('/deleteSoldier/{id}', [App\Http\Controllers\AdminController::class, 'destroy']);
 
 // DOCS
 // Route::get('userDocs/{pass_number}', [App\Http\Controllers\DocumentController::class, 'show']);

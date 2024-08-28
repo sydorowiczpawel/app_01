@@ -280,7 +280,11 @@ class AdminController extends Controller
    */
   public function destroy(string $id)
   {
-      //
+    $users = DB::table('users')
+    ->where(['id' => $id])
+    ->delete();
+
+    return redirect('/admin');
   }
 }
 

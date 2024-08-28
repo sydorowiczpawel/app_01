@@ -18,6 +18,8 @@
 </head>
 <body>
   <div id="app">
+
+{{-- Navbar --}}
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
@@ -82,22 +84,24 @@
       </div>
     </nav>
 
+{{-- Treść na stronie --}}
     <main class="py-4">
-      <div class="container">
-{{-- Gdy ADMIN --}}
-        @if(Auth::user() -> passNumber === "AA001")
-          <a href="allSoldiers"><button class="btn btn-outline-warning btn-sm" type="button">Żołnierze</button></a>
-          <a href="allVehicles"><button class="btn btn-outline-warning btn-sm">Pojazdy</button></a>
-          <a href="allDocuments"><button class="btn btn-outline-warning btn-sm">Dokumenty</button></a>
-          <a href="allLeaveForms"><button class="btn btn-outline-warning btn-sm">Rozkazy wyjazdu</button></a>
-          <a href="unverifiedUsers"><button class="btn btn-outline-warning btn-sm">Niezweryfikowani użytkownicy</button></a>
-        @endif
-        @yield('content')
-        <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-          Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-        </footer>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          @if(Auth::user() -> passNumber === "AA001")
+            <a href="allSoldiers"><button class="btn btn-outline-warning btn-sm" type="button">Żołnierze</button></a>
+            <a href="allVehicles"><button class="btn btn-outline-warning btn-sm">Pojazdy</button></a>
+            <a href="allDocuments"><button class="btn btn-outline-warning btn-sm">Dokumenty</button></a>
+            <a href="allLeaveForms"><button class="btn btn-outline-warning btn-sm">Rozkazy wyjazdu</button></a>
+            <a href="unverifiedUsers"><button class="btn btn-outline-warning btn-sm">Niezweryfikowani użytkownicy</button></a>
+          @endif
+          @yield('content')
+        </div>
       </div>
     </main>
   </div>
+  <footer class="py-16 text-center text-sm text-black dark:text-white/70">
+    Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+  </footer>
 </body>
 </html>
