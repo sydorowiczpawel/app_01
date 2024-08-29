@@ -49,7 +49,7 @@
                   </li>
                 @endif
                 @else
-{{-- Gdy Administrator --}}
+                {{-- Gdy Administrator --}}
                 @if(Auth::user() -> passNumber === "AA001")
                   <li class="nav-item dropdown">
                     <button class="nav-link" onclick="window.location.href='/admin'">{{ __('Administrator') }}</button>
@@ -65,7 +65,7 @@
                     </form>
                   </div>
                 @else
-{{-- Normal user --}}
+            {{-- Normal user --}}
                 <div>
                   <li class="nav-item dropdown">
                     <button class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -85,7 +85,7 @@
     </nav>
 
 {{-- Treść na stronie --}}
-    <main class="py-4">
+    <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8">
           @if(Auth::user() -> passNumber === "AA001")
@@ -95,13 +95,13 @@
             <a href="allLeaveForms"><button class="btn btn-outline-warning btn-sm">Rozkazy wyjazdu</button></a>
             <a href="unverifiedUsers"><button class="btn btn-outline-warning btn-sm">Niezweryfikowani użytkownicy</button></a>
           @endif
-          @yield('content')
         </div>
       </div>
-    </main>
+    </div>
+    @yield('content')
   </div>
-  <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-    Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-  </footer>
+<footer class="py-16 text-center text-sm text-black dark:text-white/70">
+  Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+</footer>
 </body>
 </html>
