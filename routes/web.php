@@ -48,8 +48,8 @@ Route::post('/storeAssigns/{id}', [App\Http\Controllers\UserController::class, '
 Route::get('/deleteSoldier/{id}', [App\Http\Controllers\AdminController::class, 'destroy']);
 
 // DOCS
+Route::get('/allDocuments', [App\Http\Controllers\DocumentController::class, 'index']);
 // Route::get('userDocs/{pass_number}', [App\Http\Controllers\DocumentController::class, 'show']);
-// Route::get('/doclst', [App\Http\Controllers\DocumentController::class, 'index']);
 // Route::get('/adddoc/{pass_number}', [App\Http\Controllers\DocumentController::class, 'create']);
 // Route::post('/docstore/{pass_number}', [App\Http\Controllers\DocumentController::class, 'store']);
 // Route::get('/editdoc/{id}', [App\Http\Controllers\DocumentController::class, 'edit']);

@@ -1,10 +1,5 @@
 allVehicles:
-    - dopasować rozmiar tabeli do takiego jak w "allSoldiers";
     - podzielić tabelę na plutony jak w "allSoldiers";
-    - dodać kolumnę "pluton" za kolumną "Numer";
-    - lupka nie działa;
-    - edycja nie działa;
-    - usuwanie nie działa;
 
 allDocuments:
     - wziąć na wzór zawartość widoku "allSoldiers";
@@ -14,3 +9,9 @@ allLeaveForms:
 
 unverifiedUsers:
     - zwężyć tabelę bo jest rozjebana jak żaba;
+
+    allSoldiers:
+        - nie działa lupka
+        - edycja ma przenosić do ekranu gdzie można edytować zmienne takie jak nr przepustki a nie np. Imię
+        - usuwanie nie działa
+        - wycentrować wszystkie kolumny bo chujowo wygląda

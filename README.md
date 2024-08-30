@@ -117,6 +117,7 @@ git push
 IV. SKRYPT DO BAZY DANYCH
 
 /* Użytkownicy */
+
 INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon, team, email, password)
 Values ('AA002', 'kapitan', 'Daniel', 'Gorczyca', 'dowódca kompanii', '26 kzs', 'n/d', 'n/d', 'commander@wp.pl', 'password');
 
@@ -190,6 +191,7 @@ INSERT into users (passNumber, rank, firstName, lastName, job_name, coy, platoon
 Values ('AA025', 'kapitan', 'Daniel', 'Gorczyca', 'kierowca', '26 kzs', 'IV', 'czwarta', 'kierowca4@wp.pl', 'password');
 
 /* Pojazdy */
+
 Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
 Values ('AA002', 'Radziecki', 'T72', 'UA0001');
 
@@ -279,3 +281,77 @@ Values ('AA002', 'General Dynamics', 'Abrams M1A2 SEPv3', 'UA0029');
 
 Insert Into tanks (passNumber, manufacturer, model, vehicle_number)
 Values ('AA002', 'General Dynamics', 'Abrams M1A2 SEPv3', 'UA0030');
+
+/*Dokumenty*/
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA002', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA003', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA004', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA005', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA006', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA007', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA008', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA009', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA010', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA011', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA012', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA013', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA014', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA015', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA016', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA017', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA018', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA019', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA020', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA021', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA022', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA023', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA024', 'kontrakt', '2020-08-01', '2021-09-30');
+
+insert into documents (passNumber, doc_name, start_date, end_date)
+VALUES ('AA025', 'kontrakt', '2020-08-01', '2021-09-30');
