@@ -32,7 +32,10 @@ Route::post('/activateAccount/{id}', [App\Http\Controllers\AdminController::clas
 Route::get('/allVehicles', [App\Http\Controllers\VehicleController::class, 'index']);
 Route::get('/addVehicle', [App\Http\Controllers\VehicleController::class, 'create']);
 Route::post('/storeVehicle', [App\Http\Controllers\VehicleController::class, 'store']);
+Route::post('/storeChanges/{id}', [App\Http\Controllers\VehicleController::class, 'storeChanges']);
 Route::get('/showVehicle/{id}', [App\Http\Controllers\VehicleController::class, 'show']);
+Route::get('/editVehicle/{id}', [App\Http\Controllers\VehicleController::class, 'edit']);
+Route::get('/deleteVehicle/{id}', [App\Http\Controllers\VehicleController::class, 'destroy']);
 // Route::get('/tankslst/{pass_number}', [App\Http\Controllers\TankController::class, 'index']);
 
 // USER

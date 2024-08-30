@@ -50,4 +50,44 @@ class VehicleController extends Controller
     return view ('layouts.vehicles.singleVehicle')
       ->with('veh', $veh);
   }
+
+  public function edit($id)
+  {
+    $veh = DB::table('tanks')
+    ->where('id', $id)
+    ->get();
+
+    $users = DB::table('users')
+    ->get();
+
+    return view('layouts.vehicles.editVehicle')
+    ->with('veh', $veh)
+    ->with('users', $users);
+  }
+  public function storeChanges(Request $request, $id)
+  {
+    $p_num = $request->input('passNumber');
+    // $p = $request->input('platoon'); - najpierw trzeba zmienić bazę danych a potem zrobić edycję nr plutonu
+    $nr = $request->input('vehicleNumber');
+
+    DB::table("tanks")
+    ->where('id', $id)
+    ->update(
+      [
+        'passNumber'=>$p_num,
+        // 'platoon'=>$p,
+        'vehicle_number'=>$nr,
+      ]
+      );
+      return redirect('/allVehicles');
+  }
+
+  public function destroy($id)
+  {
+    $t = DB::table('tanks')
+    ->where('id', $id)
+    ->delete();
+
+    return redirect('/allVehicles');
+  }
 }
