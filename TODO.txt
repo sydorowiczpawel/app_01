@@ -1,0 +1,16 @@
+allVehicles:
+    - dopasować rozmiar tabeli do takiego jak w "allSoldiers";
+    - podzielić tabelę na plutony jak w "allSoldiers";
+    - dodać kolumnę "pluton" za kolumną "Numer";
+    - lupka nie działa;
+    - edycja nie działa;
+    - usuwanie nie działa;
+
+allDocuments:
+    - wziąć na wzór zawartość widoku "allSoldiers";
+
+allLeaveForms:
+    - wziąć na wzór zawartość widoku "allSoldiers";
+
+unverifiedUsers:
+    - zwężyć tabelę bo jest rozjebana jak żaba;
