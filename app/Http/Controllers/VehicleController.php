@@ -40,4 +40,14 @@ class VehicleController extends Controller
       );
       return redirect('/allVehicles');
   }
+
+  public function show($id)
+  {
+    $veh = DB::table("tanks")
+    ->where('id', $id)
+    ->get();
+
+    return view ('layouts.vehicles.singleVehicle')
+      ->with('veh', $veh);
+  }
 }
