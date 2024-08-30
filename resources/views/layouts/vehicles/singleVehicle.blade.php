@@ -4,9 +4,9 @@
       <thead class="table-dark">
         @foreach($veh as $object)
         <tr>
-          <th>{{ $object -> manufacturer }}</th>
-          <th><center>{{ $object -> model }}</center></th>
-          <th><center>{{ $object -> vehicle_number }}</center></th>
+          <th>{{ $object -> manufacturer }} {{ $object -> model }} nr {{ $object -> vehicle_number }}</th>
+          <th><center></center></th>
+          <th><center></center></th>
         </tr>
         @endforeach
       </thead>

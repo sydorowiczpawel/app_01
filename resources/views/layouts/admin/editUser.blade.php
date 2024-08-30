@@ -84,7 +84,7 @@
     <main class="py-4">
 <div class="container">
   @foreach($user as $object)
-  <div class="row justify-content-center">
+    <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">{{$object -> firstName}} {{$object -> lastName}} {{ __('- formularz aktywacji konta') }}</div>
@@ -93,7 +93,7 @@
           <form method="POST" action="/activateAccount/{{$object -> id }}">
             @csrf
 
-{{-- Type pass number --}}
+            {{-- Type pass number --}}
             <div class="row mb-3">
               <label for="passNumber" class="col-md-4 col-form-label text-md-end">{{ __('Nr przepustki') }}</label>
               <div class="col-md-6">
@@ -107,7 +107,7 @@
               </div>
             </div>
 
-{{-- Show first name --}}
+            {{-- Show first name --}}
             <div class="row mb-3">
               <label for="firstName" class="col-md-4 col-form-label text-md-end">{{ __('Imię') }}</label>
               <div class="col-md-6">
@@ -122,7 +122,7 @@
               </div>
             </div>
 
-{{-- Show last name --}}
+            {{-- Show last name --}}
             <div class="row mb-3">
               <label for="lastName" class="col-md-4 col-form-label text-md-end">{{ __('Nazwisko') }}</label>
               <div class="col-md-6">
@@ -137,7 +137,7 @@
               </div>
             </div>
 
-{{-- Show email address --}}
+            {{-- Show email address --}}
             <div class="row mb-3">
               <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Adres email') }}</label>
 
@@ -155,7 +155,7 @@
   @endforeach
 
 
-{{-- Register button --}}
+  {{-- Register button --}}
             <div class="row mb-0">
               <div class="col-md-6 offset-md-4">
                 <button type="submit" class="btn btn-primary">
