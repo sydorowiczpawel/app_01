@@ -16,6 +16,30 @@ class UserController extends Controller
         //
     }
 
+    public function showSoldier($p_num)
+    {
+        $user = DB::table('users')
+        ->where('passNumber', $p_num)
+        ->get();
+
+        $veh = DB::table('tanks')
+        ->where('passNumber', $p_num)
+        ->get();
+
+        $doc = DB::table('documents')
+        ->where('passNumber', $p_num)
+        ->get();
+
+        $l_f = DB::table('leaveforms')
+        ->get();
+
+        return view('layouts.soldiers.personalFile')
+        ->with('user', $user)
+        ->with('veh', $veh)
+        ->with('doc', $doc)
+        ->with('l_f', $l_f);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
