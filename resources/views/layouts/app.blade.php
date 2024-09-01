@@ -91,11 +91,11 @@
               <div class="card">
                 <div class="card-body">
               @if(Auth::user() -> passNumber === "AA001")
-              <a href="allSoldiers"><button class="btn btn-outline-warning btn-sm" type="button">Żołnierze</button></a>
-              <a href="allVehicles"><button class="btn btn-outline-warning btn-sm">Pojazdy</button></a>
-              <a href="allDocuments"><button class="btn btn-outline-warning btn-sm">Dokumenty</button></a>
-              <a href="allLeaveForms"><button class="btn btn-outline-warning btn-sm">Rozkazy wyjazdu</button></a>
-              <a href="unverifiedUsers"><button class="btn btn-outline-warning btn-sm">Niezweryfikowani użytkownicy</button></a>
+              <a href="/allSoldiers"><button class="btn btn-outline-warning btn-sm" type="button">Żołnierze</button></a>
+              <a href="/allVehicles"><button class="btn btn-outline-warning btn-sm">Pojazdy</button></a>
+              <a href="/allDocuments"><button class="btn btn-outline-warning btn-sm">Dokumenty</button></a>
+              <a href="/allLeaveForms"><button class="btn btn-outline-warning btn-sm">Rozkazy wyjazdu</button></a>
+              <a href="/unverifiedUsers"><button class="btn btn-outline-warning btn-sm">Niezweryfikowani użytkownicy</button></a>
               @endif
             </div>
           {{-- kontent administratora i dowódcy kompanii --}}
