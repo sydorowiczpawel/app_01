@@ -40,42 +40,29 @@ class UserController extends Controller
         ->with('l_f', $l_f);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-      // $user = User::find($id);
-      // dd($id);
 
       $user = DB::table('users')
       ->where('id', $id)
       ->get();
 
-      return view('layouts.admin.editUser')
+      return view('layouts.soldiers.editSoldier')
       ->with('user', $user);
     }
 
     public function assign(string $id)
     {
-      // $user = User::find($id);
-      // dd($id);
 
       $user = DB::table('users')
       ->where('id', $id)
@@ -112,12 +99,29 @@ class UserController extends Controller
       return redirect('/allSoldiers');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $rank = $request->input('rank');
+        $job = $request->input('job_name');
+        $coy = $request->input('coy');
+        $platoon = $request->input('platoon');
+        $team = $request->input('team');
+
+        // dd($id, $rank, $job, $coy, $platoon, $team);
+
+        DB::table('users')
+        ->where('id', $id)
+        ->update(
+          [
+            'rank'=> $rank,
+            'job_name' => $job,
+            'coy' => $coy,
+            'platoon' => $platoon,
+            'team' => $team
+          ]
+          );
+
+          return redirect('/allSoldiers');
     }
 
     /**

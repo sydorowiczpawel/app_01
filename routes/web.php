@@ -27,6 +27,7 @@ Route::get('/addSoldier', [App\Http\Controllers\AdminController::class, 'createS
 Route::post('/storeSoldier', [App\Http\Controllers\AdminController::class, 'storeUser']);
 Route::get('/editUser/{id}', [App\Http\Controllers\AdminController::class, 'editUser']);
 Route::post('/activateAccount/{id}', [App\Http\Controllers\AdminController::class, 'activateUser']);
+Route::get('/deleteSoldier/{id}', [App\Http\Controllers\AdminController::class, 'destroy']);
 
 // VEHICLES
 Route::get('/allVehicles', [App\Http\Controllers\VehicleController::class, 'index']);
@@ -43,9 +44,8 @@ Route::get('/personalFile/{pass_number}', [App\Http\Controllers\UserController::
 Route::get('/editSoldier/{id}', [App\Http\Controllers\UserController::class, 'edit']);
 Route::get('/assignSoldier/{id}', [App\Http\Controllers\UserController::class, 'assign']);
 Route::post('/storeAssigns/{id}', [App\Http\Controllers\UserController::class, 'store']);
+Route::post('/updateSoldier/{id}', [App\Http\Controllers\UserController::class, 'update']);
 // Route::get('/personalFile/{pass_number}', [App\Http\Controllers\TankController::class, 'show']);
-// Route::post('/updateUser/{id}', [App\Http\Controllers\UserController::class, 'update']);
-Route::get('/deleteSoldier/{id}', [App\Http\Controllers\AdminController::class, 'destroy']);
 
 // DOCS
 Route::get('/allDocuments', [App\Http\Controllers\DocumentController::class, 'index']);
