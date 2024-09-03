@@ -31,6 +31,7 @@ class RegisterController extends Controller
             'lastNName' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'is_active' => ['required', 'int'],
         ]);
     }
 
@@ -52,6 +53,7 @@ class RegisterController extends Controller
 		$lastName = $request->input('lastName');
 		$email = $request->input('email');
         $password = Hash::make($request->input('password'));
+        $active = 0;
 
 		DB::table("users")
 		->insert(
@@ -60,6 +62,7 @@ class RegisterController extends Controller
 				'lastName'=>$lastName,
 				'email'=>$email,
 				'password'=>$password,
+                'is_active' => $active,
 				]
 			);
 

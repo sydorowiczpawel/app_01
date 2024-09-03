@@ -1,24 +1,25 @@
 @extends('layouts.app')
-@section('leader_content')
-
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      @foreach($user as $object)
-      <form method="POST" action="/storeAssigns/{{  $object -> id }}">
-      <div class="card">
-        <div class="card-body">
+  @if(Auth::user() -> passNumber === 'AA001' || Auth::user() -> passNumber === 'AA002')
+    @section('leader_content')
+    @foreach($user as $object)
+      <form method="POST" action="/updateSoldier/{{ $object -> id }}">
+        <div class="card">
+          <div class="card-body">
             @csrf
-
-<!-- Pass number -->
+              <!-- Show pass number -->
               <div class="form-group row">
                 <label for="passNumber" class="col-md-4 col-form-label text-md-right">{{ __('Numer przepustki') }}</label>
                 <div class="col-md-6">
-                  <label class="col-md-4 col-form-label text-md-right">{{ $object -> passNumber }}</label>
+                  <label for="passNumber" class="col-md-4 col-form-label text-md-end">{{  $object -> passNumber }}</label>
+
+                  @error('passNumber')
+                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                  @enderror
+
                 </div>
               </div>
 
-<!-- Type rank -->
+              <!-- Type rank -->
               <div class="form-group row">
                 <label for="rank" class="col-md-4 col-form-label text-md-right">{{ __('Stopień') }}</label>
                 <div class="col-md-6">
@@ -50,25 +51,34 @@
                 </div>
               </div>
 
-<!-- Type firstName -->
+              <!-- Show firstName -->
               <div class="form-group row">
                 <label for="firstName" class="col-md-4 col-form-label text-md-right">{{ __('Imię') }}</label>
                 <div class="col-md-6">
-                  <div class="col-md-6">
-                    <label class="col-md-4 col-form-label text-md-right">{{ $object -> firstName }}</label>
-                  </div>
+                  {{-- <input id="firstName" type="text" class="form-control" @error('firstName') is-invalid @enderror name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" autofocus> --}}
+                  <label for="firstName" class="col-md-4 col-form-label text-md-end">{{  $object -> firstName }}</label>
+
+                  @error('firstName')
+                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                  @enderror
+
                 </div>
               </div>
 
-<!-- Type lastName -->
+              <!-- Show lastName -->
               <div class="form-group row">
                 <label for="lastName" class="col-md-4 col-form-label text-md-right">{{ __('Nazwisko') }}</label>
-                  <div class="col-md-6">
-                    <label class="col-md-4 col-form-label text-md-right">{{ $object -> lastName }}</label>
-                  </div>
+                <div class="col-md-6">
+                  <label for="lastName" class="col-md-4 col-form-label text-md-end">{{  $object -> lastName }}</label>
+
+                  @error('lastName')
+                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                  @enderror
+
+                </div>
               </div>
 
-<!-- Type jobName -->
+              <!-- Type jobName -->
               <div class="form-group row">
                 <label for="job_name" class="col-md-4 col-form-label text-md-right">{{ __('Etat') }}</label>
                 <div class="col-md-6">
@@ -92,7 +102,7 @@
                 </div>
               </div>
 
-<!-- Type coy -->
+              <!-- Type coy -->
               <div class="form-group row">
                 <label for="coy" class="col-md-4 col-form-label text-md-right">{{ __('Kompania') }}</label>
                 <div class="col-md-6">
@@ -108,7 +118,7 @@
                 </div>
               </div>
 
-<!-- Type platoon -->
+              <!-- Type platoon -->
               <div class="form-group row">
                 <label for="platoon" class="col-md-4 col-form-label text-md-right">{{ __('Pluton') }}</label>
                 <div class="col-md-6">
@@ -128,7 +138,7 @@
                 </div>
               </div>
 
-<!-- Type team -->
+              <!-- Type team -->
               <div class="form-group row">
                 <label for="team" class="col-md-4 col-form-label text-md-right">{{ __('Drużyna') }}</label>
                 <div class="col-md-6">
@@ -148,24 +158,33 @@
                 </div>
               </div>
 
-<!-- Type e-mail -->
+              <!-- Show e-mail -->
               <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
-                  <div class="col-md-6">
-                    <label class="col-md-4 col-form-label text-md-right">{{ $object -> email }}</label>
-                  </div>
-              </div>
+                <div class="col-md-6">
+                  <label for="email" class="col-md-4 col-form-label text-md-end">{{  $object -> email }}</label>
 
-<!-- Add Button -->
-              <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-4">
-                  <button type="submit" class="btn btn-primary">{{ __('Add Soldier') }}</button>
+                  @error('email')
+                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                  @enderror
+
                 </div>
               </div>
-              @endforeach
-            </form>
+            </div>
+            <!-- Add Button -->
+            <div class="form-group row mb-0">
+              <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary">{{ __('Add Soldier') }}</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        @endforeach
+    @endsection
+  @else
+    @section('user_content')
+      <div class="alert alert-warning" role="alert">
+        {{ Auth::user() -> firstName }} {{ Auth::user() -> lastName }} - Nie masz uprawnień aby tu być!
       </div>
-    </div>
-  </div>
-</div>
-@endsection
+    @endsection
+  @endif

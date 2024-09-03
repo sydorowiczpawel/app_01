@@ -9,6 +9,7 @@ use App\Models\Document;
 use App\Models\Tank;
 use App\Models\LeaveForm;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Cast\String_;
 
 class AdminController extends Controller
 {
@@ -278,13 +279,31 @@ class AdminController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(string $id)
+  public function destroy($passNumber)
   {
-    $users = DB::table('users')
-    ->where(['id' => $id])
-    ->delete();
+    $unactive = 'nieaktywny';
 
-    return redirect('/admin');
+    DB::table('users')
+    ->where('passNumber', $passNumber)
+    ->update(
+      [
+        'rank' => $unactive,
+        'job_name' => $unactive,
+        'coy' => $unactive,
+        'platoon' => $unactive,
+        'team' => $unactive
+      ]
+    );
+
+    DB::table('documents')
+    ->where('passNumber', $passNumber)
+    ->get();
+
+    // $users = DB::table('users')
+    // ->where(['id' => $id])
+    // ->delete();
+
+    return redirect('/allSoldiers');
   }
 }
 
