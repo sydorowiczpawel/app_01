@@ -9,13 +9,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/registered', [App\Http\Controllers\HomeController::class, 'registered'])->name('registered');
-
-// próba rejestracji użytkownika
-// Route::post('/store_document', [App\Http\Controllers\DocumentController::class, 'store_as_admin']);
 Route::post('/registerUser', [App\Http\Controllers\Auth\RegisterController::class, 'create']);
 
-// Zrzut z Githuba:
 // ADMIN
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']);
 Route::get('/allDocuments', [App\Http\Controllers\AdminController::class, 'getDocs']);

@@ -19,97 +19,97 @@
 <body>
   <div id="app">
     {{-- Navbar --}}
-      <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-          <a class="navbar-brand" href="{{ url('/home') }}">
-            Strona główna
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-              <span class="navbar-toggler-icon"></span>
-          </button>
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="{{ url('/home') }}">
+          Strona główna
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav me-auto"></ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Left Side Of Navbar -->
+          <ul class="navbar-nav me-auto"></ul>
 
-              <!-- Right Side Of Navbar -->
-              <div class="navbar-nav ms-auto">
-                <!-- Authentication Links -->
-                @guest
-                  @if (Route::has('login'))
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                  @endif
+            <!-- Right Side Of Navbar -->
+            <div class="navbar-nav ms-auto">
+              <!-- Authentication Links -->
+              @guest
+                @if (Route::has('login'))
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                  </li>
+                @endif
 
-                  @if (Route::has('register'))
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                    </li>
-                  @endif
-                  @else
-                  {{-- Gdy Administrator --}}
-                  @if(Auth::user() -> passNumber === "AA001")
-                    <li class="nav-item dropdown">
-                      <button class="nav-link" onclick="window.location.href='/admin'">{{ __('Administrator') }}</button>
-                    </li>
-                    <div>
-                      <li class="nav-item dropdown">
-                        <button class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                          {{ __('Wyloguj') }}
-                        </button>
-                      </li>
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                      </form>
-                    </div>
-                  @else
-              {{-- Normal user --}}
+                @if (Route::has('register'))
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                  </li>
+                @endif
+                @else
+                {{-- Gdy Administrator --}}
+                @if(Auth::user() -> passNumber === "AA001")
+                  <li class="nav-item dropdown">
+                    <button class="nav-link" onclick="window.location.href='/admin'">{{ __('Administrator') }}</button>
+                  </li>
                   <div>
                     <li class="nav-item dropdown">
                       <button class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('Wyloguj') }}
                       </button>
                     </li>
-
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                       @csrf
                     </form>
                   </div>
-                @endif
-              @endguest
-            </ul>
-          </div>
-        </div>
-      </nav>
+                @else
+            {{-- Normal user --}}
+                <div>
+                  <li class="nav-item dropdown">
+                    <button class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                      {{ __('Wyloguj') }}
+                    </button>
+                  </li>
 
-    {{-- Treść na stronie --}}
-      <div class="container">
-        <div class="row justify-content-center">
-          {{-- Admin's navbar --}}
-            <div class="col-md-8">
-              <div class="card">
-                <div class="card-body">
-              @if(Auth::user() -> passNumber === "AA001")
-              <a href="/allSoldiers"><button class="btn btn-outline-warning btn-sm" type="button">Żołnierze</button></a>
-              <a href="/allVehicles"><button class="btn btn-outline-warning btn-sm">Pojazdy</button></a>
-              <a href="/allDocuments"><button class="btn btn-outline-warning btn-sm">Dokumenty</button></a>
-              <a href="/allLeaveForms"><button class="btn btn-outline-warning btn-sm">Rozkazy wyjazdu</button></a>
-              <a href="/unverifiedUsers"><button class="btn btn-outline-warning btn-sm">Niezweryfikowani użytkownicy</button></a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                  </form>
+                </div>
               @endif
-            </div>
-          {{-- kontent administratora i dowódcy kompanii --}}
-            @yield('leader_content')
-          {{-- kontent pozostałych żołnierzy --}}
-            @yield('user_content')
-              </div>
-            </div>
+            @endguest
+          </ul>
         </div>
       </div>
-    {{-- Stopka --}}
-      <footer class="py-16 text-center text-sm text-black dark:text-white/70">
-        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-      </footer>
+    </nav>
+
+    {{-- Treść na stronie --}}
+    <div class="container">
+      <div class="row justify-content-center">
+        {{-- Admin's navbar --}}
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-body">
+          @if(Auth::user() -> passNumber === "AA001")
+          <a href="/allSoldiers"><button class="btn btn-outline-warning btn-sm" type="button">Żołnierze</button></a>
+          <a href="/allVehicles"><button class="btn btn-outline-warning btn-sm">Pojazdy</button></a>
+          <a href="/allDocuments"><button class="btn btn-outline-warning btn-sm">Dokumenty</button></a>
+          <a href="/allLeaveForms"><button class="btn btn-outline-warning btn-sm">Rozkazy wyjazdu</button></a>
+          <a href="/unverifiedUsers"><button class="btn btn-outline-warning btn-sm">Niezweryfikowani użytkownicy</button></a>
+          @endif
+        </div>
+        {{-- kontent administratora i dowódcy kompanii --}}
+        @yield('leader_content')
+        {{-- kontent żołnierzy --}}
+        @yield('user_content')
+        {{-- kontent niezalogowanego użytkownika --}}
+        @yield('before_login_content')
+      </div>
+    </div>
   </div>
+  {{-- Stopka --}}
+  <footer class="py-16 text-center text-sm text-black dark:text-white/70">
+    Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+  </footer>
 </body>
 </html>
