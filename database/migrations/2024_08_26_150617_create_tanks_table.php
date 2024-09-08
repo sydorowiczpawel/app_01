@@ -15,9 +15,9 @@ return new class extends Migration
             $table->increments('id');
             $table->string('passNumber')->nullable();
             $table->foreign('passNumber')->references('passNumber')->on('users');
-            $table->string('manufacturer');
-            $table->string('model');
-            $table->string('vehicle_number')->unique();
+            $table->string('manufacturer')->nullable();
+            $table->string('model')->nullable();
+            $table->string('vehicle_number')->unique()->nullable();
             $table->timestamps();
         });
     }

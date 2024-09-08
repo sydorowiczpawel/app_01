@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class VehicleController extends Controller
 {
-    public function index()
+    public function showAll()
   {
     $vehicle = DB::table('tanks')
     ->get();
@@ -17,14 +17,49 @@ class VehicleController extends Controller
       ->with('vehicle', $vehicle);
   }
 
-  public function create()
+  public function createVeh()
   {
-      return view('layouts.vehicles.addVehicle');
+
+    return view('layouts.vehicles.addVehicle');
   }
 
-  public function store(Request $request)
+  // public function storePassNumber(Request $request)
+  // {
+  //   $przepustka = $request->input('passNumber');
+
+  //   DB::table("tanks")
+  //   ->insert(
+  //     [
+  //       'passNumber'=>$przepustka,
+  //     ]
+  //     );
+  //     return redirect('/addManufacturer');
+  // }
+
+  // public function addManufacturer()
+  // {
+  //   $user = DB::table('users')
+  //   ->get();
+
+  //   return view('layouts.vehicles.addVehicle')
+  //   ->with('soldier', $user);
+  // }
+
+  // public function storeManufacturer(Request $request)
+  // {
+  //   $przepustka = $request->input('passNumber');
+
+  //   DB::table("tanks")
+  //   ->insert(
+  //     [
+  //       'passNumber'=>$przepustka,
+  //     ]
+  //     );
+  //     return redirect('/addManufacturer');
+  // }
+
+  public function storeVeh(Request $request)
   {
-    $przepustka = $request->input('passNumber');
     $producent = $request->input('manufacturer');
     $model = $request->input('model');
     $numer = $request->input('number');
@@ -32,7 +67,6 @@ class VehicleController extends Controller
     DB::table("tanks")
     ->insert(
       [
-        'passNumber'=>$przepustka,
         'manufacturer'=>$producent,
         'model'=>$model,
         'vehicle_number'=>$numer,
@@ -41,14 +75,19 @@ class VehicleController extends Controller
       return redirect('/allVehicles');
   }
 
-  public function show($id)
+  public function show($id, $passNumber)
   {
     $veh = DB::table("tanks")
     ->where('id', $id)
     ->get();
 
+    $user = DB::table('users')
+    ->where('passNumber', $passNumber)
+    ->get();
+
     return view ('layouts.vehicles.singleVehicle')
-      ->with('veh', $veh);
+      ->with('veh', $veh)
+      ->with('user', $user);
   }
 
   public function edit($id)
@@ -68,7 +107,7 @@ class VehicleController extends Controller
   {
     $p_num = $request->input('passNumber');
     // $p = $request->input('platoon'); - najpierw trzeba zmienić bazę danych a potem zrobić edycję nr plutonu
-    $nr = $request->input('vehicleNumber');
+    // $nr = $request->input('vehicleNumber');
 
     DB::table("tanks")
     ->where('id', $id)
@@ -76,7 +115,7 @@ class VehicleController extends Controller
       [
         'passNumber'=>$p_num,
         // 'platoon'=>$p,
-        'vehicle_number'=>$nr,
+        // 'vehicle_number'=>$nr,
       ]
       );
       return redirect('/allVehicles');

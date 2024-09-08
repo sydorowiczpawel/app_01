@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('leaveForms', function (Blueprint $table) {
             $table->increments('id');
-            // $table->string('passNumber');
-            // $table->foreign('passNumber')->references('passNumber')->on('users');
-            // $table->string('vehicle_number');
-            // $table->foreign('vehicle_number')->references('vehicle_number')->on('tanks');
-            // $table->string('series')->unique();
+            $table->string('user_id');
+            $table->foreign('user_id')->references('passNumber')->on('users');
+            $table->string('veh_id');
+            $table->foreign('veh_id')->references('vehicle_number')->on('tanks');
+            $table->string('series')->unique();
             // $table->date('start_date');
             // $table->date('end_date');
-            // $table->double('km_before_use');
-            // $table->double('km_after_use')->nullable();
+            $table->double('km_before_use');
+            $table->double('km_after_use')->nullable();
             // $table->double('geh_start');
             // $table->double('geh_end')->nullable();
             // $table->double('leh_start');

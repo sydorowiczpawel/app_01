@@ -2,12 +2,12 @@
 @section('leader_content')
 
     <form method="POST" action="/storeVehicle">
-    {{-- <div class="card">
-      <div class="card-body"> --}}
+    <div class="card">
+      <div class="card-body">
           @csrf
 
       <!-- Type pass number -->
-          <div class="form-group row">
+          {{-- <div class="form-group row">
             <label for="passNumber" class="col-md-4 col-form-label text-md-right">{{ __('Numer przepustki') }}</label>
             <div class="col-md-6">
               <input id="passNumber" type="text" class="form-control" @error('passNumber') is-invalid @enderror name="passNumber" value="{{ old('passNumber') }}" required autocomplete="passNumber" autofocus>
@@ -17,7 +17,7 @@
               @enderror
 
             </div>
-          </div>
+          </div> --}}
 
       <!-- Type Manufacturer -->
             <div class="form-group row">
@@ -70,7 +70,7 @@
             </div>
 
             <!-- Type platoon -->
-            <div class="form-group row">
+            {{-- <div class="form-group row">
               <label for="platoon" class="col-md-4 col-form-label text-md-right">{{ __('Pluton') }}</label>
               <div class="col-md-6">
                 <input id="platoon" type="text" class="form-control" @error('platoon') is-invalid @enderror name="platoon" value="{{ old('platoon') }}" required autocomplete="platoon" autofocus>
@@ -78,7 +78,7 @@
                   <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
               </div>
-            </div>
+            </div> --}}
 
       <!-- Add Button -->
             <div class="form-group row mb-0">
