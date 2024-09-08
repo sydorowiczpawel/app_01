@@ -3,23 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LeaveFormController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+    public function getLeaveForms()
+  {
+    return view ('layouts.leave_forms.allLeaveForms');
+  }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $tank = DB::table('tanks')
+        ->where('id', $id)
+        ->get();
+
+        $user = DB::table('users')
+        ->get();
+
+        return view('layouts.leave_forms.new')
+        ->with('tank', $tank)
+        ->with('user', $user);
     }
 
     /**
@@ -27,7 +37,7 @@ class LeaveFormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

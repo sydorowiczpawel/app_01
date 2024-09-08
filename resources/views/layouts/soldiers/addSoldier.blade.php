@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('content')
+@section('leader_content')
 
 <div class="container">
   <div class="row justify-content-center">
@@ -30,6 +30,7 @@
                     <option>-- wybierz z listy --</option>
                     <option>szer.</option>
                     <option>st. szer.</option>
+                    <option>st. szer. spec.</option>
                     <option>kpr.</option>
                     <option>st. kpr.</option>
                     <option>plut.</option>
@@ -92,7 +93,7 @@
                     <option>technik uzbrojenia</option>
                     <option>dowódca plutonu</option>
                     <option>pomocnik dowódcy plutonu</option>
-                    <option>instuktor</option>
+                    <option>instruktor</option>
                     <option>kierowca - starszy instruktor</option>
                     <option>kierowca</option>
                   </select>

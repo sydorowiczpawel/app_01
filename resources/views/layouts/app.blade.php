@@ -51,7 +51,7 @@
                 {{-- Gdy Administrator --}}
                 @if(Auth::user() -> passNumber === "AA001")
                   <li class="nav-item dropdown">
-                    <button class="nav-link" onclick="window.location.href='/admin'">{{ __('Administrator') }}</button>
+                    <button class="nav-link" onclick="window.location.href='/dev'">{{ __('Panel Programisty') }}</button>
                   </li>
                   <div>
                     <li class="nav-item dropdown">
@@ -104,6 +104,8 @@
         @yield('user_content')
         {{-- kontent niezalogowanego użytkownika --}}
         @yield('before_login_content')
+        {{-- kontent niezalogowanego użytkownika --}}
+        @yield('developer_content')
       </div>
     </div>
   </div>

@@ -1,23 +1,20 @@
 @extends('layouts.app')
   @if(Auth::user() -> passNumber === 'AA001' || Auth::user() -> passNumber === 'AA002')
     @section('leader_content')
+
+    
     @foreach($user as $object)
       <form method="POST" action="/updateSoldier/{{ $object -> id }}">
         <div class="card">
           <div class="card-body">
             @csrf
-              <!-- Show pass number -->
-              <div class="form-group row">
-                <label for="passNumber" class="col-md-4 col-form-label text-md-right">{{ __('Numer przepustki') }}</label>
-                <div class="col-md-6">
-                  <label for="passNumber" class="col-md-4 col-form-label text-md-end">{{  $object -> passNumber }}</label>
-
-                  @error('passNumber')
-                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                  @enderror
-
-                </div>
-              </div>
+              <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                  <tr>
+                    <th>{{  $object -> passNumber }} {{  $object -> firstName }} {{  $object -> lastName }}</th>
+                  </tr>
+                </thead>
+              </table>
 
               <!-- Type rank -->
               <div class="form-group row">
@@ -27,6 +24,7 @@
                     <option>-- wybierz z listy --</option>
                     <option>szer.</option>
                     <option>st. szer.</option>
+                    <option>st. szer. spec.</option>
                     <option>kpr.</option>
                     <option>st. kpr.</option>
                     <option>plut.</option>
@@ -51,33 +49,6 @@
                 </div>
               </div>
 
-              <!-- Show firstName -->
-              <div class="form-group row">
-                <label for="firstName" class="col-md-4 col-form-label text-md-right">{{ __('Imię') }}</label>
-                <div class="col-md-6">
-                  {{-- <input id="firstName" type="text" class="form-control" @error('firstName') is-invalid @enderror name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" autofocus> --}}
-                  <label for="firstName" class="col-md-4 col-form-label text-md-end">{{  $object -> firstName }}</label>
-
-                  @error('firstName')
-                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                  @enderror
-
-                </div>
-              </div>
-
-              <!-- Show lastName -->
-              <div class="form-group row">
-                <label for="lastName" class="col-md-4 col-form-label text-md-right">{{ __('Nazwisko') }}</label>
-                <div class="col-md-6">
-                  <label for="lastName" class="col-md-4 col-form-label text-md-end">{{  $object -> lastName }}</label>
-
-                  @error('lastName')
-                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                  @enderror
-
-                </div>
-              </div>
-
               <!-- Type jobName -->
               <div class="form-group row">
                 <label for="job_name" class="col-md-4 col-form-label text-md-right">{{ __('Etat') }}</label>
@@ -90,7 +61,7 @@
                     <option>technik uzbrojenia</option>
                     <option>dowódca plutonu</option>
                     <option>pomocnik dowódcy plutonu</option>
-                    <option>instuktor</option>
+                    <option>instruktor</option>
                     <option>kierowca - starszy instruktor</option>
                     <option>kierowca</option>
                   </select>
@@ -158,28 +129,17 @@
                 </div>
               </div>
 
-              <!-- Show e-mail -->
-              <div class="form-group row">
-                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
-                <div class="col-md-6">
-                  <label for="email" class="col-md-4 col-form-label text-md-end">{{  $object -> email }}</label>
-
-                  @error('email')
-                  <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                  @enderror
-
-                </div>
-              </div>
-            </div>
-            <!-- Add Button -->
-            <div class="form-group row mb-0">
-              <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">{{ __('Add Soldier') }}</button>
-              </div>
+          </div>
+          <!-- Add Button -->
+          <div class="form-group row mb-0">
+            <div class="col-md-6 offset-md-4">
+              <button type="submit" class="btn btn-primary">{{ __('Zapisz zmiany') }}</button>
             </div>
           </div>
-        </form>
-        @endforeach
+        </div>
+      </form>
+    @endforeach
+
     @endsection
   @else
     @section('user_content')

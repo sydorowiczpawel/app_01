@@ -31,7 +31,7 @@
             </div>
 
             {{-- Type platoon --}}
-            <div class="row mb-3">
+            {{-- <div class="row mb-3">
               <label for="platoon" class="col-md-4 col-form-label text-md-end">{{ __('Pluton') }}</label>
               <div class="col-md-6">
                 <input id="platoon" type="text" class="form-control @error('platoon') is-invalid @enderror" name="platoon" value="{{ old('platoon') }}" required autocomplete="platoon" autofocus>
@@ -42,10 +42,10 @@
                   </span>
                 @enderror
               </div>
-            </div>
+            </div> --}}
 
             {{-- Type new  Vehicle Number --}}
-            <div class="row mb-3">
+            {{-- <div class="row mb-3">
               <label for="vehicleNumber" class="col-md-4 col-form-label text-md-end">{{ __('Nr pojazdu') }}</label>
               <div class="col-md-6">
                 <input id="vehicleNumber" type="vehicleNumber" class="form-control @error('vehicleNumber') is-invalid @enderror" name="vehicleNumber" value="{{ old('vehicleNumber') }}" required autocomplete="vehicleNumber">
@@ -56,13 +56,13 @@
                   </span>
                 @enderror
               </div>
-            </div>
+            </div> --}}
             @endforeach
             {{-- Register button --}}
             <div class="row mb-0">
               <div class="col-md-6 offset-md-4">
                 <button type="submit" class="btn btn-primary">
-                  {{ __('Aktywuj konto') }}
+                  {{ __('Przypisz kierowcę') }}
                 </button>
               </div>
             </div>
