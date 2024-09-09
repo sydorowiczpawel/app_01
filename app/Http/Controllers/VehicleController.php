@@ -19,7 +19,6 @@ class VehicleController extends Controller
 
   public function createVeh()
   {
-
     return view('layouts.vehicles.addVehicle');
   }
 
@@ -75,19 +74,24 @@ class VehicleController extends Controller
       return redirect('/allVehicles');
   }
 
-  public function show($id, $passNumber)
+  public function show($veh_id, $user_id)
   {
     $veh = DB::table("tanks")
-    ->where('id', $id)
+    ->where('vehicle_number', $veh_id)
     ->get();
 
     $user = DB::table('users')
-    ->where('passNumber', $passNumber)
+    ->where('passNumber', $user_id)
+    ->get();
+
+    $order = DB::table('leaveforms')
+    ->where('veh_id', $veh_id)
     ->get();
 
     return view ('layouts.vehicles.singleVehicle')
       ->with('veh', $veh)
-      ->with('user', $user);
+      ->with('user', $user)
+      ->with('order', $order);
   }
 
   public function edit($id)

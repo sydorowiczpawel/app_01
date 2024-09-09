@@ -22,7 +22,7 @@ Route::get('/addVehicle', [App\Http\Controllers\VehicleController::class, 'creat
 Route::post('/storePassNumber', [App\Http\Controllers\VehicleController::class, 'storePassNumber']);
 Route::post('/storeVehicle', [App\Http\Controllers\VehicleController::class, 'storeVeh']);
 Route::post('/storeChanges/{id}', [App\Http\Controllers\VehicleController::class, 'storeChanges']);
-Route::get('/showVehicle/{id}/{passNumber}', [App\Http\Controllers\VehicleController::class, 'show']);
+Route::get('/showVehicle/{veh_id}/{user_id}', [App\Http\Controllers\VehicleController::class, 'show']);
 Route::get('/editVehicle/{id}', [App\Http\Controllers\VehicleController::class, 'edit']);
 Route::get('/deleteVehicle/{id}', [App\Http\Controllers\VehicleController::class, 'destroy']);
 
@@ -49,12 +49,15 @@ Route::get('/deleteSoldier/{id}', [App\Http\Controllers\UserController::class, '
 
 // Leave Forms
 Route::get('/allLeaveForms', [App\Http\Controllers\LeaveFormController::class, 'getLeaveForms']);
-Route::get('/newLeaveForm/{id}', [App\Http\Controllers\LeaveFormController::class, 'create']);
+Route::get('/newLeaveForm/{id}/{passNumber}', [App\Http\Controllers\LeaveFormController::class, 'create']);
+Route::get('/newLeaveForm', [App\Http\Controllers\LeaveFormController::class, 'createEmpty']);
 Route::post('/storeDepartureOrder/{id}', [App\Http\Controllers\LeaveFormController::class, 'store']);
+Route::post('/storeFullDepOrder', [App\Http\Controllers\LeaveFormController::class, 'storeBasic']);
+Route::get('/editLeaveForm/{id}', [App\Http\Controllers\LeaveFormController::class, 'edit']);
+Route::post('/editLeaveForm/storeChanges/{id}', [App\Http\Controllers\LeaveFormController::class, 'storeChanges']);
 // Route::get('/allDepartureOrders/{pass_number}', [App\Http\Controllers\OrderController::class, 'index']);
 // Route::get('/selectedTankOrders/{tank_number}', [App\Http\Controllers\OrderController::class, 'showSelected']);
 // Route::get('/addDepartureOrder/{pass_number}', [App\Http\Controllers\OrderController::class, 'create']);
-// Route::get('/editOrder/{id}', [App\Http\Controllers\OrderController::class, 'edit']);
 // Route::post('/finishOrder/{id}', [App\Http\Controllers\OrderController::class, 'finish']);
 // Route::get('/orderDetails/{id}', [App\Http\Controllers\OrderController::class, 'show']);
 
