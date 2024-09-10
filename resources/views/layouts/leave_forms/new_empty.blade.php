@@ -1,22 +1,17 @@
 @extends('layouts.app')
 @section('user_content')
 
-@foreach($tank as $object)
-  <form method="POST" action="/storeDepartureOrder/{{ $object -> vehicle_number }}">
+  <form method="POST" action="/storeFullDepOrder">
     <div class="card">
       <div class="card-body">
         @csrf
-          <table class="table table-striped table-hover">
-            <thead class="table-dark">
-              <tr>
-                <th>{{  $object -> manufacturer }} {{  $object -> model }} {{  $object -> vehicle_number }}</th>
-                @foreach($driver as $d)
-                <th>Etatowy kierowca: {{  $d -> rank }} {{  $d -> firstName }} {{  $d -> lastName }}, przepustka nr {{ $d -> passNumber }}</th>
-                @endforeach
-              </tr>
-            </thead>
-          </table>
-        @endforeach
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th><center>Utwórz nowy rozkaz wyjazdu</center></th>
+            </tr>
+          </thead>
+        </table>
 
         <!-- Type leave form series -->
         <div class="form-group row">
@@ -28,6 +23,23 @@
               <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
             @enderror
 
+          </div>
+        </div>
+
+        <!-- Select Vehicle -->
+        <div class="form-group row">
+          <label for="vehicle" class="col-md-4 col-form-label text-md-right">{{ __('Wybierz pojazd') }}</label>
+          <div class="col-md-6">
+            <select id="vehicle" type="text" class="form-control" @error('vehicle') is-invalid @enderror name="vehicle" required autocomplete="vehicle" autofocus>
+              <option>--wybierz--</option>
+              @foreach($veh as $v)
+              <option>{{ $v -> vehicle_number }}</option>
+              @endforeach
+            </select>
+
+            @error('vehicle')
+              <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+            @enderror
           </div>
         </div>
 

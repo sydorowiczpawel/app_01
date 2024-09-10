@@ -8,67 +8,71 @@ use Illuminate\Support\Facades\DB;
 
 class DocumentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function allDocs()
-    {
-        $docs = DB::table('documents')
-        ->get();
 
-        $users = DB::table('users')
-        ->get();
+  public function allDocs()
+  {
+      $docs = DB::table('documents')
+      ->get();
 
-        return view('layouts.documents.allDocs')
-        ->with('docs', $docs)
-        ->with('users', $users);
-    }
+      $users = DB::table('users')
+      ->get();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+      return view('layouts.documents.allDocs')
+      ->with('docs', $docs)
+      ->with('users', $users);
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  public function createEmpty()
+  {
+    $user = DB::table('users')
+    ->get();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+      return view('layouts.documents.create_empty_document')
+      ->with('user', $user);
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+  public function createWithUserID()
+  {
+      //
+  }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+  public function storeEmpty(Request $request)
+  {
+      $name = $request->input('doc_name');
+      $owner = $request->input('doc_owner');
+      $date_from = $request->input('from');
+      $date_to = $request->input('to');
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+      DB::table('documents')
+      ->insert(
+        [
+          'doc_name' => $name,
+          'passNumber' => $owner,
+          'start_date' => $date_from,
+          'end_date' => $date_to
+        ]
+        );
+
+        return redirect('/allDocuments');
+  }
+
+  public function show(string $id)
+  {
+      //
+  }
+
+  public function edit(string $id)
+  {
+      //
+  }
+
+  public function update(Request $request, string $id)
+  {
+      //
+  }
+
+  public function destroy(string $id)
+  {
+      //
+  }
 }
