@@ -33,3 +33,12 @@
           </tr>
       </tbody>
     </table>
+
+    {{-- Mała tabela --}}
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th><center>Tabela pojazdów</center></th>
+        </tr>
+      </thead>
+    </table>

@@ -24,6 +24,7 @@ class UserController extends Controller
       ->get();
 
       $l_f = DB::table('leaveforms')
+      ->where('user_id', $p_num)
       ->get();
 
       return view('layouts.soldiers.personalFile')

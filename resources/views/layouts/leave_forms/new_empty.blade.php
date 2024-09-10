@@ -5,14 +5,13 @@
     <div class="card">
       <div class="card-body">
         @csrf
-          <table class="table table-striped table-hover">
-            <thead class="table-dark">
-              <tr>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-          </table>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th><center>Utwórz nowy rozkaz wyjazdu</center></th>
+            </tr>
+          </thead>
+        </table>
 
         <!-- Type leave form series -->
         <div class="form-group row">

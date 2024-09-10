@@ -39,10 +39,11 @@ Route::get('/assignSoldier/{id}', [App\Http\Controllers\UserController::class, '
 Route::get('/deleteSoldier/{id}', [App\Http\Controllers\UserController::class, 'destroy']);
 
 // DOCS
-    Route::get('/allDocuments', [App\Http\Controllers\DocumentController::class, 'allDocs']);
+Route::get('/allDocuments', [App\Http\Controllers\DocumentController::class, 'allDocs']);
+Route::get('/addDoc', [App\Http\Controllers\DocumentController::class, 'createEmpty']);
+Route::post('/storeDoc', [App\Http\Controllers\DocumentController::class, 'storeEmpty']);
 // Route::get('userDocs/{pass_number}', [App\Http\Controllers\DocumentController::class, 'show']);
-// Route::get('/adddoc/{pass_number}', [App\Http\Controllers\DocumentController::class, 'create']);
-// Route::post('/docstore/{pass_number}', [App\Http\Controllers\DocumentController::class, 'store']);
+// Route::get('/addDoc/{pass_number}', [App\Http\Controllers\DocumentController::class, 'createWithUserID']);
 // Route::get('/editdoc/{id}', [App\Http\Controllers\DocumentController::class, 'edit']);
 // Route::post('/updatedoc/{id}', [App\Http\Controllers\DocumentController::class, 'update']);
 // Route::get('/deletedoc/{id}', [App\Http\Controllers\DocumentController::class, 'destroy']);
