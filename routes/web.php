@@ -29,6 +29,7 @@ Route::get('/deleteVehicle/{id}', [App\Http\Controllers\VehicleController::class
 // USER
 Route::get('/allSoldiers', [App\Http\Controllers\UserController::class, 'getSoldiers']);
 Route::get('/personalFile/{pass_number}', [App\Http\Controllers\UserController::class, 'personalFile']);
+// Route::get('/personalFile/edit{id}', [App\Http\Controllers\UserController::class, 'editSoldier']);
 Route::get('/activateUserForm/{id}', [App\Http\Controllers\UserController::class, 'activateUserForm']);
 Route::get('/editSoldier/{id}', [App\Http\Controllers\UserController::class, 'edit']);
 Route::post('/updateSoldier/{id}', [App\Http\Controllers\UserController::class, 'update']);
