@@ -5,7 +5,12 @@
     {{-- Leader content --}}
     @foreach($veh as $object)
       <div class="card">
-        <div class="card-header"><center>{{$object -> manufacturer}} {{$object -> model}} {{ __('- formularz edycji danych') }}</center></div>
+        <div class="card-header"><center>{{$object -> manufacturer}} {{$object -> model}} nr {{ $object -> vehicle_number }} {{ __('- formularz edycji danych') }}</center></div>
+        @foreach($users as $user)
+          @if($object -> passNumber === $user -> passNumber)
+            <div class="card-header"><center>Obecny etatowy kierowca: {{ $user -> rank }} {{ $user -> firstName }} {{ $user -> lastName }} - {{ $user -> passNumber }}</center></div>
+          @endif
+        @endforeach
 
         <div class="card-body">
           <form method="POST" action="/storeChanges/{{$object -> id }}">
