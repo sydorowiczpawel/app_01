@@ -22,6 +22,16 @@ class DocumentController extends Controller
       ->with('users', $users);
   }
 
+  public function show($id)
+  {
+    $doc = DB::table('documents')
+    ->where('passNumber', $id)
+    ->get();
+
+    return view('layouts.documents.userDocuments')
+    ->with('doc', $doc);
+  }
+
   public function createEmpty()
   {
     $user = DB::table('users')
@@ -54,11 +64,6 @@ class DocumentController extends Controller
         );
 
         return redirect('/allDocuments');
-  }
-
-  public function show(string $id)
-  {
-      //
   }
 
   public function edit(string $id)

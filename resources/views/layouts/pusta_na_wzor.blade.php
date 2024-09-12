@@ -10,8 +10,9 @@
     @endsection
   @endif
 
+    {{-- Duża tabela --}}
     <table class="table table-striped table-hover">
-      <thead class="table-dark">
+      <thead>
         <tr>
           <th>n1</th>
           <th><center>n2</center></th>
@@ -42,3 +43,9 @@
         </tr>
       </thead>
     </table>
+
+    {{-- Przycisk - własna treść--}}
+    <a href="/personalFile/{{ $object -> passNumber }}">
+      <button type="button" class="btn btn-outline-secondary">{{ $object -> passNumber }}</button>
+    </a>
+

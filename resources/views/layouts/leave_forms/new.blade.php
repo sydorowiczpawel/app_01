@@ -2,19 +2,21 @@
 @section('user_content')
 
 @foreach($tank as $object)
-  <form method="POST" action="/storeDepartureOrder/{{ $object -> vehicle_number }}">
-    <div class="card">
-      <div class="card-body">
+  @foreach($users as $user)
+    <form method="POST" action="/storeDepartureOrder/{{ $object -> vehicle_number }}/{{ $user -> passNumber }}">
+  @endforeach
+    {{-- <div class="card"> --}}
+      {{-- <div class="card-body"> --}}
         @csrf
           <table class="table table-striped table-hover">
-            <thead class="table-dark">
-              <tr>
-                <th>{{  $object -> manufacturer }} {{  $object -> model }} {{  $object -> vehicle_number }}</th>
-                @foreach($driver as $d)
-                <th>Etatowy kierowca: {{  $d -> rank }} {{  $d -> firstName }} {{  $d -> lastName }}, przepustka nr {{ $d -> passNumber }}</th>
-                @endforeach
-              </tr>
+            <thead>
+              <th><center>Nowy rozkaz wyjazdu dla pojazdu {{ $object -> model }} {{ $object -> vehicle_number }}</center></th>
             </thead>
+            <tbody>
+                @foreach($driver as $d)
+                <td><center>Etatowy kierowca: {{  $d -> rank }} {{  $d -> firstName }} {{  $d -> lastName }}, przepustka nr {{ $d -> passNumber }}</center></td>
+                @endforeach
+            </tbody>
           </table>
         @endforeach
 
@@ -67,7 +69,7 @@
             <button type="submit" class="btn btn-primary">{{ __('Zatwierdź zmiany') }}</button>
           </div>
         </div>
-      </div>
-    </div>
-  </form>
+      {{-- </div> --}}
+    {{-- </div> --}}
+    </form>
 @endsection

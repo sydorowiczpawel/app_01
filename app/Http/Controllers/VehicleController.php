@@ -22,6 +22,16 @@ class VehicleController extends Controller
     return view('layouts.vehicles.addVehicle');
   }
 
+  public function userVeh($id)
+  {
+    $veh = DB::table('tanks')
+    ->where('passNumber', $id)
+    ->get();
+
+    return view('layouts.vehicles.userVehicles')
+    ->with('veh', $veh);
+  }
+
   // public function storePassNumber(Request $request)
   // {
   //   $przepustka = $request->input('passNumber');
