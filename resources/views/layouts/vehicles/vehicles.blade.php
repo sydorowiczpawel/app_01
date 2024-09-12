@@ -1,13 +1,13 @@
 @extends('layouts.app')
-  @if(Auth::user() -> passNumber === 'AA001' || Auth::user() -> passNumber === 'AA002')
-    @section('leader_content')
+    @section('user_content')
     {{-- Tabela wszystkich czołgów --}}
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th><center>Tabela pojazdów</center></th>
+          <th><center>POJAZDY</center></th>
         </tr>
       </thead>
+      @if(Auth::user() -> passNumber === 'AA001' || Auth::user() -> passNumber === 'AA002')
       <tbody>
         <tr>
           <th><center>
@@ -21,6 +21,7 @@
           </center></th>
         </tr>
       </tbody>
+      @endif
     </table>
     <table class="table table-striped table-hover">
       <thead>
@@ -31,15 +32,16 @@
         </tr>
       </thead>
 
-      <tbody>
-        @foreach($vehicle as $object)
+      @if(Auth::user() -> passNumber === 'AA001' || Auth::user() -> passNumber === 'AA002')
+        <tbody>
+          @foreach($vehicles as $object)
           <tr>
             <td>{{ $object -> manufacturer}}</td>
             <td><center>{{ $object -> model }}</center></td>
             <td>
               <center>
                 @if( $object -> passNumber !== NULL )
-                  <a href="editVehicle/{{ $object -> id }}">
+                  <a href="showVehicle/{{ $object -> id }}">
                     <button type="button" class="btn btn-outline-secondary">
                       {{ $object -> vehicle_number }}
                     </button>
@@ -58,14 +60,34 @@
               </center>
             </td>
           </tr>
+          @endforeach
+        </tbody>
+      @else
+        <?PHP
+          $p_num = (Auth::user() -> passNumber);
+
+          $userVeh = DB::table('tanks')
+          ->where('passNumber', $p_num)
+          ->get();
+        ?>
+
+      <tbody>
+        @foreach($userVeh as $object)
+        <tr>
+          <td>{{ $object -> manufacturer}}</td>
+          <td><center>{{ $object -> model }}</center></td>
+          <td>
+            <center>
+                <a href="showVehicle/{{ $object -> id }}">
+                  <button type="button" class="btn btn-outline-secondary">
+                    {{ $object -> vehicle_number }}
+                  </button>
+                </a>
+            </center>
+          </td>
+        </tr>
         @endforeach
       </tbody>
+      @endif
     </table>
     @endsection
-  @else
-    @section('user_content')
-      <div class="alert alert-warning" role="alert">
-        {{ Auth::user() -> firstName }} {{ Auth::user() -> lastName }} - Nie masz uprawnień aby tu być!
-      </div>
-    @endsection
-  @endif

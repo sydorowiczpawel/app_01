@@ -22,31 +22,30 @@ class DocumentController extends Controller
       ->with('users', $users);
   }
 
-  public function show($id)
+  public function show()
   {
     $doc = DB::table('documents')
-    ->where('passNumber', $id)
+    // ->where('passNumber', $id)
     ->get();
 
-    return view('layouts.documents.userDocuments')
-    ->with('doc', $doc);
+    $users = DB::table('users')
+    ->get();
+
+    return view('layouts.documents.documents')
+    ->with('doc', $doc)
+    ->with('users', $users);
   }
 
-  public function createEmpty()
+  public function create()
   {
-    $user = DB::table('users')
+    $users = DB::table('users')
     ->get();
 
       return view('layouts.documents.create_empty_document')
-      ->with('user', $user);
+      ->with('user', $users);
   }
 
-  public function createWithUserID()
-  {
-      //
-  }
-
-  public function storeEmpty(Request $request)
+  public function store(Request $request)
   {
       $name = $request->input('doc_name');
       $owner = $request->input('doc_owner');
@@ -63,7 +62,7 @@ class DocumentController extends Controller
         ]
         );
 
-        return redirect('/allDocuments');
+        return redirect('/home');
   }
 
   public function edit(string $id)

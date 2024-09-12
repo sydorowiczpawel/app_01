@@ -103,9 +103,9 @@
                   <thead>
                     <tr>
                       <th><center><a href="/allSoldiers"><button class="btn btn-outline-warning btn-sm" type="button">Żołnierze</button></a></center></th>
-                      <th><center><a href="/allVehicles"><button class="btn btn-outline-warning btn-sm">Pojazdy</button></a></center></th>
-                      <th><center><a href="/allDocuments"><button class="btn btn-outline-warning btn-sm">Dokumenty</button></a></center></th>
-                      <th><center><a href="/allLeaveForms"><button class="btn btn-outline-warning btn-sm">Rozkazy wyjazdu</button></a></center></th>
+                      <th><center><a href="/Vehicles"><button class="btn btn-outline-warning btn-sm">Pojazdy</button></a></center></th>
+                      <th><center><a href="/Documents"><button class="btn btn-outline-warning btn-sm">Dokumenty</button></a></center></th>
+                      <th><center><a href="/LeaveForms"><button class="btn btn-outline-warning btn-sm">Rozkazy wyjazdu</button></a></center></th>
                       {{-- <th><a href="/unverifiedUsers"><button class="btn btn-outline-warning btn-sm">Niezweryfikowani użytkownicy</button></a></th> --}}
                     </tr>
                   </thead>

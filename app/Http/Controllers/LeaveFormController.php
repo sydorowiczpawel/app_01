@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\DB;
 class LeaveFormController extends Controller
 {
 
-  public function getLeaveForms()
+  public function show()
   {
     $form = DB::table('leaveforms')
     ->get();
 
-    return view ('layouts.leave_forms.allLeaveForms')
+    return view ('layouts.leave_forms.leaveForms')
     ->with('form', $form);
   }
 
@@ -71,10 +71,6 @@ class LeaveFormController extends Controller
     ->where('veh_id', $id)
     ->get();
 
-    // $form = DB::table('leaveforms')
-    // ->where('veh_id', $id)
-    // ->get();
-
     DB::table('leaveforms')
     ->insert(
       [
@@ -85,12 +81,10 @@ class LeaveFormController extends Controller
       ]
     );
 
-    return view('layouts.vehicles.singleVehicle')
+    return redirect('/Vehicles')
     ->with('veh', $veh)
     ->with('user', $usr)
     ->with('order', $order);
-    // return view('layouts.leave_forms.allLeaveForms')
-    // ->with('form', $form);
   }
 
   public function storeBasic(Request $request)
@@ -110,17 +104,7 @@ class LeaveFormController extends Controller
       ]
     );
 
-    return redirect('/allLeaveForms');
-  }
-
-  public function show($id)
-  {
-    $lf = DB::table('leaveforms')
-    ->where('user_id', $id)
-    ->get();
-
-    return view('layouts.leave_forms.userLeaveForms')
-    ->with('lf', $lf);
+    return redirect('/LeaveForms');
   }
 
   public function edit(string $id)
@@ -145,7 +129,7 @@ class LeaveFormController extends Controller
       ]
     );
 
-    return redirect('allLeaveForms');
+    return redirect('/LeaveForms');
   }
 
   public function update(Request $request, string $id)

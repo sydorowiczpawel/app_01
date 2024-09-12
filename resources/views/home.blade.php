@@ -8,6 +8,7 @@
 <table class="table table-striped table-hover">
   <tbody>
     <th>{{ $user -> firstName }} {{ $user -> lastName }}</></th>
+    <th>{{ $user -> passNumber }}</></th>
     <th><center>{{ date('d-m-Y') }}</center></th>
   </tbody>
 </table>
@@ -21,21 +22,22 @@
       <thead>
         <td>
           <center>
-            <a href="/userDocuments/{{ $user -> passNumber }}">
+            {{-- <a href="/userDocuments/{{ $user -> passNumber }}"> --}}
+            <a href="/Documents">
               <button type="button" class="btn btn-outline-secondary">Dokumenty</button>
             </a>
           </center>
         </td>
         <td>
           <center>
-            <a href="/userVehicles/{{ $user -> passNumber }}">
+            <a href="/Vehicles">
               <button type="button" class="btn btn-outline-secondary">Pojazdy</button>
             </a>
           </center>
         </td>
         <td>
           <center>
-            <a href="/userLeaveForms/{{ $user -> passNumber }}">
+            <a href="/LeaveForms">
               <button type="button" class="btn btn-outline-secondary">Rozkazy wyjazdu</button>
             </a>
           </center>

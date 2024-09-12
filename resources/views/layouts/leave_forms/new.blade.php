@@ -37,12 +37,20 @@
         <div class="form-group row">
           <label for="driver" class="col-md-4 col-form-label text-md-right">{{ __('Wybierz kierowcę') }}</label>
           <div class="col-md-6">
-            <select id="driver" type="text" class="form-control" @error('driver') is-invalid @enderror name="driver" required autocomplete="driver" autofocus>
-              <option>--wybierz--</option>
-              @foreach($users as $us)
-              <option>{{ $us -> passNumber }}</option>
+            @if(Auth::user()->passNumber === 'AA001' || Auth::user()->passNumber === 'AA002')
+              <select id="driver" type="text" class="form-control" @error('driver') is-invalid @enderror name="driver" required autocomplete="driver" autofocus>
+                @foreach($driver as $d)
+                  <option>{{ $d -> passNumber }}</option>
+                @endforeach
+                @foreach($users as $us)
+                <option>{{ $us -> passNumber }}</option>
+                @endforeach
+              </select>
+            @else
+              @foreach($driver as $d)
+                <input id="driver" type="text" class="form-control" @error('driver') is-invalid @enderror name="driver" value="{{ $d -> passNumber }}" required autocomplete="driver" autofocus>
               @endforeach
-            </select>
+            @endif
 
             @error('driver')
               <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>

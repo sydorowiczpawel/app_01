@@ -17,12 +17,12 @@ Route::get('/dev', [App\Http\Controllers\AdminController::class, 'devPanel']);
 Route::post('/activateAccount/{id}', [App\Http\Controllers\AdminController::class, 'activateUser']);
 
 // VEHICLES
-Route::get('/allVehicles', [App\Http\Controllers\VehicleController::class, 'showAll']);
+Route::get('/Vehicles', [App\Http\Controllers\VehicleController::class, 'showAll']);
 Route::get('/addVehicle', [App\Http\Controllers\VehicleController::class, 'createVeh']);
 Route::post('/storePassNumber', [App\Http\Controllers\VehicleController::class, 'storePassNumber']);
 Route::post('/storeVehicle', [App\Http\Controllers\VehicleController::class, 'storeVeh']);
 Route::post('/storeChanges/{id}', [App\Http\Controllers\VehicleController::class, 'storeChanges']);
-Route::get('/showVehicle/{veh_id}/{user_id}', [App\Http\Controllers\VehicleController::class, 'show']);
+Route::get('/showVehicle/{veh_id}', [App\Http\Controllers\VehicleController::class, 'show']);
 Route::get('/editVehicle/{id}', [App\Http\Controllers\VehicleController::class, 'edit']);
 Route::get('/deleteVehicle/{id}', [App\Http\Controllers\VehicleController::class, 'destroy']);
 Route::get('/userVehicles/{id}', [App\Http\Controllers\VehicleController::class, 'userVeh']);
@@ -41,25 +41,19 @@ Route::get('/deleteSoldier/{id}', [App\Http\Controllers\UserController::class, '
 
 // DOCS
 Route::get('/allDocuments', [App\Http\Controllers\DocumentController::class, 'allDocs']);
-Route::get('/addDoc', [App\Http\Controllers\DocumentController::class, 'createEmpty']);
-Route::post('/storeDoc', [App\Http\Controllers\DocumentController::class, 'storeEmpty']);
-// Route::get('userDocs/{pass_number}', [App\Http\Controllers\DocumentController::class, 'show']);
-// Route::get('/addDoc/{pass_number}', [App\Http\Controllers\DocumentController::class, 'createWithUserID']);
-// Route::get('/editdoc/{id}', [App\Http\Controllers\DocumentController::class, 'edit']);
-// Route::post('/updatedoc/{id}', [App\Http\Controllers\DocumentController::class, 'update']);
-// Route::get('/deletedoc/{id}', [App\Http\Controllers\DocumentController::class, 'destroy']);
+// Route::get('/addDoc', [App\Http\Controllers\DocumentController::class, 'createEmpty']);
+Route::get('/newDocument', [App\Http\Controllers\DocumentController::class, 'create']);
+Route::post('/storeDoc', [App\Http\Controllers\DocumentController::class, 'store']);
+Route::get('Documents', [App\Http\Controllers\DocumentController::class, 'show']);
+
 
 // Leave Forms
-Route::get('/allLeaveForms', [App\Http\Controllers\LeaveFormController::class, 'getLeaveForms']);
+Route::get('/LeaveForms', [App\Http\Controllers\LeaveFormController::class, 'show']);
 Route::get('/newLeaveForm/{id}/{passNumber}', [App\Http\Controllers\LeaveFormController::class, 'create']);
 Route::get('/newLeaveForm', [App\Http\Controllers\LeaveFormController::class, 'createEmpty']);
 Route::post('/storeDepartureOrder/{id}/{passNumber}', [App\Http\Controllers\LeaveFormController::class, 'store']);
 Route::post('/storeFullDepOrder', [App\Http\Controllers\LeaveFormController::class, 'storeBasic']);
 Route::get('/editLeaveForm/{id}', [App\Http\Controllers\LeaveFormController::class, 'edit']);
 Route::post('/editLeaveForm/storeChanges/{id}', [App\Http\Controllers\LeaveFormController::class, 'storeChanges']);
-// Route::get('/allDepartureOrders/{pass_number}', [App\Http\Controllers\OrderController::class, 'index']);
-// Route::get('/selectedTankOrders/{tank_number}', [App\Http\Controllers\OrderController::class, 'showSelected']);
-// Route::get('/addDepartureOrder/{pass_number}', [App\Http\Controllers\OrderController::class, 'create']);
-// Route::post('/finishOrder/{id}', [App\Http\Controllers\OrderController::class, 'finish']);
-// Route::get('/orderDetails/{id}', [App\Http\Controllers\OrderController::class, 'show']);
+
 
