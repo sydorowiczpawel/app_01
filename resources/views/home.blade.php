@@ -1,34 +1,59 @@
 @extends('layouts.app')
-
 @section('user_content')
-  <div class="card-header"><b>{{ Auth::user() -> firstName }} {{ Auth::user() -> lastName }}</b>{{ date('d-m-Y') }}</div>
+
+<?php
+  $user = Auth::user();
+?>
+
+<table class="table table-striped table-hover">
+  <tbody>
+    <th>{{ $user -> firstName }} {{ $user -> lastName }}</></th>
+    <th><center>{{ date('d-m-Y') }}</center></th>
+  </tbody>
+</table>
   @if (session('status'))
     <div class="alert alert-success" role="alert">
       {{ session('status') }}
     </div>
   @endif
-  @if(Auth::user() -> is_active !== 0 )
-    <div class="navbar-nav ms-auto">
-      <li class="nav-item dropdown">
-        <button class="nav-link" onclick="window.location.href='/dokumenty'">{{ __('Dokumenty') }}</button>
-      </li>
-    </div>
-    <div class="navbar-nav ms-auto">
-      <li class="nav-item dropdown">
-        <button class="nav-link" onclick="window.location.href='/dokumenty'">{{ __('Pojazdy') }}</button>
-      </li>
-    </div>
-    <div class="navbar-nav ms-auto">
-      <li class="nav-item dropdown">
-        <button class="nav-link" onclick="window.location.href='/dokumenty'">{{ __('Rozkazy wyjazdu') }}</button>
-      </li>
-    </div>
-    <div class="navbar-nav ms-auto">
-      <li class="nav-item dropdown">
-        <button class="nav-link" onclick="window.location.href='/dokumenty'">{{ __('Grafik') }}</button>
-      </li>
-    </div>
+  @if(Auth::user() -> is_active === 1 )
+    <table>
+      <thead>
+        <td>
+          <center>
+            <a href="/userDocuments/{{ $user -> passNumber }}">
+              <button type="button" class="btn btn-outline-secondary">Dokumenty</button>
+            </a>
+          </center>
+        </td>
+        <td>
+          <center>
+            <a href="/userVehicles/{{ $user -> passNumber }}">
+              <button type="button" class="btn btn-outline-secondary">Pojazdy</button>
+            </a>
+          </center>
+        </td>
+        <td>
+          <center>
+            <a href="/userLeaveForms/{{ $user -> passNumber }}">
+              <button type="button" class="btn btn-outline-secondary">Rozkazy wyjazdu</button>
+            </a>
+          </center>
+        </td>
+      </thead>
+      <tbody>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tbody>
+    </table
   @else
-    <center>Użytkownik niezweryfikowany</center>
+    <table class="table table-striped table-hover">
+      <thead>
+        <th>
+          <center>Użytkownik niezweryfikowany</center>
+        </th>
+      </thead>
+    </table>
   @endif
 @endsection

@@ -52,15 +52,28 @@ class LeaveFormController extends Controller
     ->with('driver', $driver);
   }
 
-  public function store(Request $request, $id)
+  public function store(Request $request, $id, $p_num)
   {
+
     $seria_rozkazu = $request->input('series');
     $kierowca = $request->input('driver');
     $km_przed = $request->input('km_before');
 
-    $form = DB::table('leaveforms')
+    $veh = DB::table('tanks')
+    ->where('vehicle_number', $id)
+    ->get();
+
+    $usr = DB::table('users')
+    ->where('passNumber', $p_num)
+    ->get();
+
+    $order = DB::table('leaveforms')
     ->where('veh_id', $id)
     ->get();
+
+    // $form = DB::table('leaveforms')
+    // ->where('veh_id', $id)
+    // ->get();
 
     DB::table('leaveforms')
     ->insert(
@@ -72,8 +85,12 @@ class LeaveFormController extends Controller
       ]
     );
 
-    return view('layouts.leave_forms.allLeaveForms')
-    ->with('form', $form);
+    return view('layouts.vehicles.singleVehicle')
+    ->with('veh', $veh)
+    ->with('user', $usr)
+    ->with('order', $order);
+    // return view('layouts.leave_forms.allLeaveForms')
+    // ->with('form', $form);
   }
 
   public function storeBasic(Request $request)
@@ -96,9 +113,14 @@ class LeaveFormController extends Controller
     return redirect('/allLeaveForms');
   }
 
-  public function show(string $id)
+  public function show($id)
   {
-    //
+    $lf = DB::table('leaveforms')
+    ->where('user_id', $id)
+    ->get();
+
+    return view('layouts.leave_forms.userLeaveForms')
+    ->with('lf', $lf);
   }
 
   public function edit(string $id)
