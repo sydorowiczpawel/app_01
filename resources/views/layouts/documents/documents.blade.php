@@ -41,14 +41,20 @@
       <th>Seria/numer</th>
       <th><center>data wystawienia</center></th>
       <th><center>ważny do dnia</center></th>
-      <th><center>za ifem</center></th>
+      <th><center>właściciel</center></th>
     </thead>
     @foreach($doc as $object)
       <tbody>
         <td>{{ $object -> doc_name }}</td>
         <td><center>{{ $object -> start_date}}</center></td>
         <td><center>{{ $object -> end_date}}</center></td>
-        <td><center>{{ $object -> passNumber }}</center></td>
+        <td><center>
+          <a href="/personalFile/{{ $object -> passNumber }}">
+            <button type="button" class="btn btn-outline-secondary">
+              {{ $object -> passNumber }}
+            </button>
+          </a>
+        </center></td>
       </tbody>
     @endforeach
   @else

@@ -2,21 +2,12 @@
 @section('user_content')
 
 @foreach($tank as $object)
-  @foreach($users as $user)
-    <form method="POST" action="/storeDepartureOrder/{{ $object -> vehicle_number }}/{{ $user -> passNumber }}">
-  @endforeach
-    {{-- <div class="card"> --}}
-      {{-- <div class="card-body"> --}}
+    <form method="POST" action="/storeLeaveForm/{{ $object -> vehicle_number }}">
         @csrf
           <table class="table table-striped table-hover">
             <thead>
               <th><center>Nowy rozkaz wyjazdu dla pojazdu {{ $object -> model }} {{ $object -> vehicle_number }}</center></th>
             </thead>
-            <tbody>
-                @foreach($driver as $d)
-                <td><center>Etatowy kierowca: {{  $d -> rank }} {{  $d -> firstName }} {{  $d -> lastName }}, przepustka nr {{ $d -> passNumber }}</center></td>
-                @endforeach
-            </tbody>
           </table>
         @endforeach
 
@@ -37,20 +28,11 @@
         <div class="form-group row">
           <label for="driver" class="col-md-4 col-form-label text-md-right">{{ __('Wybierz kierowcę') }}</label>
           <div class="col-md-6">
-            @if(Auth::user()->passNumber === 'AA001' || Auth::user()->passNumber === 'AA002')
               <select id="driver" type="text" class="form-control" @error('driver') is-invalid @enderror name="driver" required autocomplete="driver" autofocus>
-                @foreach($driver as $d)
-                  <option>{{ $d -> passNumber }}</option>
-                @endforeach
                 @foreach($users as $us)
-                <option>{{ $us -> passNumber }}</option>
+                  <option>{{ $us -> passNumber }}</option>
                 @endforeach
               </select>
-            @else
-              @foreach($driver as $d)
-                <input id="driver" type="text" class="form-control" @error('driver') is-invalid @enderror name="driver" value="{{ $d -> passNumber }}" required autocomplete="driver" autofocus>
-              @endforeach
-            @endif
 
             @error('driver')
               <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -77,7 +59,5 @@
             <button type="submit" class="btn btn-primary">{{ __('Zatwierdź zmiany') }}</button>
           </div>
         </div>
-      {{-- </div> --}}
-    {{-- </div> --}}
     </form>
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('user_content')
 
-  <form method="POST" action="/storeFullDepOrder">
+  <form method="POST" action="/storeLeaveForm">
     <div class="card">
       <div class="card-body">
         @csrf

@@ -2,7 +2,7 @@
   @if(Auth::user() -> passNumber === 'AA001' || Auth::user() -> passNumber === 'AA002')
     @section('leader_content')
     @foreach($user as $object)
-    {{-- Mała tabela --}}
+      {{-- Tabela NAGŁÓWEK --}}
       <table class="table table-striped table-hover">
         <tbody>
           <tr>
@@ -10,7 +10,7 @@
           </tr>
         </tbody>
       </table>
-
+      {{-- Tabela PODSTAWOWE DANE --}}
       <table class="table table-striped table-hover">
         <thead>
           <td><center>id: {{ $object -> passNumber }}</center></td>
@@ -33,9 +33,9 @@
           </center></td>
         </thead>
       </table>
-      @endforeach
 
-      {{-- POJAZDY --}}
+      {{-- Tabela POJAZDY --}}
+      {{-- Nagłówek --}}
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -43,32 +43,33 @@
           </tr>
         </thead>
       </table>
+      {{-- Podstawowe dane pojazdów użytkownika --}}
       <table class="table table-striped table-hover">
         <thead>
           <tr>
-            <td><center>Model</center></td>
-            <td><center>Numer</center></td>
-            <td><center></center></td>
+            <th>Model</th>
+            <th><center>Numer</center></th>
+            <th><center></center></th>
           </tr>
         </thead>
         <tbody>
+          @foreach($veh as $object)
           <tr>
-            @foreach($veh as $object)
-              <td><center>{{ $object -> model }}</center></td>
-              <td><center>{{ $object -> vehicle_number }}</center></td>
-              <td><center>
+            <td>{{ $object -> model }}</td>
+            <td><center>{{ $object -> vehicle_number }}</center></td>
+            <td><center>
                 @foreach($user as $u)
-                  <a href="/showVehicle/{{ $object -> vehicle_number }}/{{ $u -> passNumber }}">
+                  <a href="/showVehicle/{{ $object -> vehicle_number }}">
                     <button type="button" class="btn btn-outline-secondary">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                       </svg>
                     </button>
                   </a>
-                @endforeach
-              </center></td>
-            @endforeach
-          </tr>
+                  @endforeach
+                </center></td>
+              </tr>
+              @endforeach
         </tbody>
       </table>
 
@@ -80,6 +81,21 @@
           </tr>
         </thead>
       </table>
+      {{-- Tabela z przyciskiem dodawania --}}
+      <table class="table table-striped table-hover">
+        <tbody>
+          <td><center>
+            <a href="/newDocument/{{ $object -> passNumber}}">
+              <button type="button" class="btn btn-outline-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-node-plus" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M11 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8M6.025 7.5a5 5 0 1 1 0 1H4A1.5 1.5 0 0 1 2.5 10h-1A1.5 1.5 0 0 1 0 8.5v-1A1.5 1.5 0 0 1 1.5 6h1A1.5 1.5 0 0 1 4 7.5zM11 5a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 11 5M1.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"/>
+                </svg>
+              </button>
+            </a>
+          </center></td>
+        </tbody>
+      </table>
+      {{-- Tabela z dokumentami --}}
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -110,6 +126,7 @@
       </table>
 
       {{-- ROZKAZY WYJAZDU --}}
+      {{-- Nagłówek --}}
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -117,6 +134,21 @@
           </tr>
         </thead>
       </table>
+      {{-- Tabela z przyciskiem dodawania --}}
+      <table class="table table-striped table-hover">
+        <tbody>
+          <td><center>
+            <a href="/leaveForms/new_userID/{{ $object -> passNumber}}">
+              <button type="button" class="btn btn-outline-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-node-plus" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M11 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8M6.025 7.5a5 5 0 1 1 0 1H4A1.5 1.5 0 0 1 2.5 10h-1A1.5 1.5 0 0 1 0 8.5v-1A1.5 1.5 0 0 1 1.5 6h1A1.5 1.5 0 0 1 4 7.5zM11 5a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 11 5M1.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"/>
+                </svg>
+              </button>
+            </a>
+          </center></td>
+        </tbody>
+      </table>
+      {{-- Tabela z rozkazami wyjazdu --}}
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -158,6 +190,8 @@
             @endforeach
         </tbody>
       </table>
+    @endforeach
+
     @endsection
   @else
     @section('user_content')

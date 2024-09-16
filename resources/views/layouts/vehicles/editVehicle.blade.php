@@ -1,56 +1,73 @@
 @extends('layouts.app')
-  @section('user_content')
+  @section('leader_content')
 
   @foreach($veh as $object)
-    <table>
+    <table class="table table-striped table-hover">
       <thead>
-        <td><center>{{$object -> manufacturer}} {{$object -> model}} nr {{ $object -> vehicle_number }} {{ __('- formularz edycji danych') }}</center></td>
+        <th><center>{{ __('Formularz edycji danych pojazdu') }}</center></th>
       </thead>
+      <tbody>
+        <td><center>{{$object -> manufacturer}} {{$object -> model}} nr {{ $object -> vehicle_number }}</center></td>
+      </tbody>
     </table>
-    @if(Auth::user() -> passNumber === 'AA001' || Auth::user() -> passNumber === 'AA002')
-      <table>
-        @foreach($users as $user)
-          <tbody>
+    <table class="table table-striped table-hover">
+      <tbody>
+        <tr>
+          @foreach($users as $user)
             <td>
               @if($object -> passNumber === $user -> passNumber)
-                  <div class="card-header"><center>Obecny etatowy kierowca: {{ $user -> rank }} {{ $user -> firstName }} {{ $user -> lastName }} - {{ $user -> passNumber }}</center></div>
-                @endif
+                <center>Obecny etatowy kierowca: {{ $user -> rank }} {{ $user -> firstName }} {{ $user -> lastName }} - {{ $user -> passNumber }}</center>
+              @endif
             </td>
-          </tbody>
-        @endforeach
-      </table>
-    @endif
+          @endforeach
+        </tr>
+      </tbody>
+    </table>
 
     <form method="POST" action="/storeChanges/{{$object -> id }}">
       @csrf
 
       {{-- Type driver's Pass Number --}}
-      <div class="row mb-3">
-        <label for="passNumber" class="col-md-4 col-form-label text-md-end">{{ __('Nr przepustki kierowcy') }}</label>
-        <div class="col-md-6">
-          <select id="passNumber" type="text" class="form-control" @error('passNumber') is-invalid @enderror name="passNumber" required autocomplete="passNumber" autofocus>
-            <option>-- wybierz z listy --</option>
-            @foreach($users as $user)
-              <option>{{ $user -> passNumber }}</option>
-            @endforeach
-          </select>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <td for="passNumber"><center>Nr przepustki kierowcy</center></td>
+            <td><center>
+              <select id="passNumber" type="text" class="form-control" @error('passNumber') is-invalid @enderror name="passNumber" required autocomplete="passNumber" autofocus>
+                <option>-- wybierz z listy --</option>
+                @foreach($users as $user)
+                  <option>{{ $user -> passNumber }}</option>
+                @endforeach
+              </select>
 
-          @error('passNumber')
-            <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-            </span>
-          @enderror
-        </div>
-      </div>
+              @error('passNumber')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+              @enderror
+
+            </center></td>
+          </tr>
+        </thead>
+      </table>
 
       {{-- Register button --}}
-      <div class="row mb-0">
+      <table class="table table-striped table-hover">
+        <thead>
+          <td><center>
+            <button type="submit" class="btn btn-primary">
+              {{ __('Przypisz kierowcę') }}
+            </button>
+          </center></td>
+        </thead>
+      </table>
+      {{-- <div class="row mb-0">
         <div class="col-md-6 offset-md-4">
           <button type="submit" class="btn btn-primary">
             {{ __('Przypisz kierowcę') }}
           </button>
         </div>
-      </div>
+      </div> --}}
     </form>
   @endforeach
 @endsection

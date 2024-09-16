@@ -9,19 +9,6 @@ use Illuminate\Support\Facades\DB;
 class DocumentController extends Controller
 {
 
-  public function allDocs()
-  {
-      $docs = DB::table('documents')
-      ->get();
-
-      $users = DB::table('users')
-      ->get();
-
-      return view('layouts.documents.allDocs')
-      ->with('docs', $docs)
-      ->with('users', $users);
-  }
-
   public function show()
   {
     $doc = DB::table('documents')
@@ -36,12 +23,22 @@ class DocumentController extends Controller
     ->with('users', $users);
   }
 
-  public function create()
+  public function create_empty()
   {
     $users = DB::table('users')
     ->get();
 
-      return view('layouts.documents.create_empty_document')
+      return view('layouts.documents.new_empty')
+      ->with('user', $users);
+  }
+
+  public function create_userID($id)
+  {
+    $users = DB::table('users')
+    ->where('passNumber', $id)
+    ->get();
+
+      return view('layouts.documents.new_with_userID')
       ->with('user', $users);
   }
 
@@ -62,7 +59,27 @@ class DocumentController extends Controller
         ]
         );
 
-        return redirect('/home');
+        return redirect('/documents');
+  }
+
+  public function store_userID(Request $request, $id)
+  {
+      $name = $request->input('doc_name');
+      $owner = $request->input('doc_owner');
+      $date_from = $request->input('from');
+      $date_to = $request->input('to');
+
+      DB::table('documents')
+      ->insert(
+        [
+          'doc_name' => $name,
+          'passNumber' => $owner,
+          'start_date' => $date_from,
+          'end_date' => $date_to
+        ]
+        );
+
+        return redirect('/documents');
   }
 
   public function edit(string $id)

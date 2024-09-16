@@ -17,7 +17,7 @@ class LeaveFormController extends Controller
     ->with('form', $form);
   }
 
-  public function createEmpty()
+  public function create_empty()
   {
     $tank = DB::table('tanks')
     ->get();
@@ -33,7 +33,8 @@ class LeaveFormController extends Controller
     ->with('users', $users)
     ->with('driver', $driver);
   }
-  public function create($id, $passNumber)
+
+  public function create_vehID($id)
   {
     $tank = DB::table('tanks')
     ->where('id', $id)
@@ -43,48 +44,89 @@ class LeaveFormController extends Controller
     ->get();
 
     $driver = DB::table('users')
-    ->where('passNumber', $passNumber)
     ->get();
 
-    return view('layouts.leave_forms.new')
+    return view('layouts.leave_forms.new_with_vehID')
     ->with('tank', $tank)
     ->with('users', $users)
     ->with('driver', $driver);
   }
 
-  public function store(Request $request, $id, $p_num)
+  public function create_userID($p_num)
   {
-
-    $seria_rozkazu = $request->input('series');
-    $kierowca = $request->input('driver');
-    $km_przed = $request->input('km_before');
-
-    $veh = DB::table('tanks')
-    ->where('vehicle_number', $id)
+    $tank = DB::table('tanks')
     ->get();
 
-    $usr = DB::table('users')
+    $user = DB::table('users')
     ->where('passNumber', $p_num)
     ->get();
 
-    $order = DB::table('leaveforms')
-    ->where('veh_id', $id)
-    ->get();
+    return view('layouts.leave_forms.new_with_userID')
+    ->with('tank', $tank)
+    ->with('users', $user);
+  }
+
+  public function store_empty(Request $request)
+  {
+
+    $seria_rozkazu = $request->input('series');
+    $vehicle = $request->input('vehicle');
+    $kierowca = $request->input('driver');
+    $km_przed = $request->input('km_before');
 
     DB::table('leaveforms')
     ->insert(
       [
         'user_id' => $kierowca,
-        'veh_id' => $id,
+        'veh_id' => $vehicle,
         'series' => $seria_rozkazu,
         'km_before_use' => $km_przed,
       ]
     );
 
-    return redirect('/Vehicles')
-    ->with('veh', $veh)
-    ->with('user', $usr)
-    ->with('order', $order);
+    return redirect('/leaveForms');
+  }
+
+  public function store_vehID(Request $request, $id)
+  {
+
+    $seria_rozkazu = $request->input('series');
+    $vehicle = $id;
+    $kierowca = $request->input('driver');
+    $km_przed = $request->input('km_before');
+
+    DB::table('leaveforms')
+    ->insert(
+      [
+        'user_id' => $kierowca,
+        'veh_id' => $vehicle,
+        'series' => $seria_rozkazu,
+        'km_before_use' => $km_przed,
+      ]
+    );
+
+    return redirect('/leaveForms');
+  }
+
+  public function store_userID(Request $request, $p_num)
+  {
+
+    $seria_rozkazu = $request->input('series');
+    $vehicle = $request->input('vehicle');
+    $kierowca = $p_num;
+    $km_przed = $request->input('km_before');
+
+    DB::table('leaveforms')
+    ->insert(
+      [
+        'user_id' => $kierowca,
+        'veh_id' => $vehicle,
+        'series' => $seria_rozkazu,
+        'km_before_use' => $km_przed,
+      ]
+    );
+
+    return redirect('/leaveForms');
   }
 
   public function storeBasic(Request $request)
@@ -104,7 +146,7 @@ class LeaveFormController extends Controller
       ]
     );
 
-    return redirect('/LeaveForms');
+    return redirect('/leaveForms');
   }
 
   public function edit(string $id)
@@ -129,7 +171,7 @@ class LeaveFormController extends Controller
       ]
     );
 
-    return redirect('/LeaveForms');
+    return redirect('/leaveForms');
   }
 
   public function update(Request $request, string $id)

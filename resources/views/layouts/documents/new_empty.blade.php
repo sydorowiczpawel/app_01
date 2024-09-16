@@ -1,6 +1,6 @@
 @extends('layouts.app')
     @section('user_content')
-      <form method="POST" action="/storeDoc">
+      <form method="POST" action="/storeDocument">
         @csrf
         {{-- Mała tabela --}}
         <table class="table table-striped table-hover">
@@ -28,17 +28,12 @@
         <div class="form-group row">
           <label for="doc_owner" class="col-md-4 col-form-label text-md-right">{{ __('Wybierz właściciela') }}</label>
           <div class="col-md-6">
-            @if(Auth::user() -> passNumber === 'AA001' || Auth::user() -> passNumber === 'AA002')
               <select id="doc_owner" type="text" class="form-control" @error('doc_owner') is-invalid @enderror name="doc_owner" required autocomplete="doc_owner" autofocus>
+                <option>--wybierz--</option>
                 @foreach($user as $u)
-                  <option>--wybierz--</option>
                   <option>{{ $u -> passNumber }}</option>
                 @endforeach
               </select>
-            @else
-              <input id="doc_owner" type="text" class="form-control" @error('doc_owner') is-invalid @enderror name="doc_owner" value="{{ Auth::user() -> passNumber }}" required autocomplete="doc_owner" autofocus>
-            @endif
-
             @error('doc_owner')
               <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
             @enderror

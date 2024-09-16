@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class VehicleController extends Controller
 {
-    public function showAll()
+    public function show_all()
   {
     $vehicles = DB::table('tanks')
     ->get();
@@ -19,6 +19,27 @@ class VehicleController extends Controller
 
       return view ('layouts.vehicles.vehicles')
       ->with('vehicles', $vehicles);
+  }
+
+  public function show_single($veh_id)
+  {
+
+    $veh = DB::table("tanks")
+    ->where('vehicle_number', $veh_id)
+    ->get();
+
+    $user = DB::table('users')
+    ->get();
+
+    $order = DB::table('leaveforms')
+    ->where('veh_id', $veh_id)
+    ->get();
+
+
+    return view ('layouts.vehicles.showVehicle')
+      ->with('veh', $veh)
+      ->with('user', $user)
+      ->with('order', $order);
   }
 
   public function createVeh()
@@ -50,26 +71,7 @@ class VehicleController extends Controller
         'vehicle_number'=>$numer,
       ]
       );
-      return redirect('/allVehicles');
-  }
-
-  public function show($veh_id)
-  {
-    $veh = DB::table("tanks")
-    ->where('id', $veh_id)
-    ->get();
-
-    $user = DB::table('users')
-    ->get();
-
-    $order = DB::table('leaveforms')
-    ->where('veh_id', $veh_id)
-    ->get();
-
-    return view ('layouts.vehicles.showVehicle')
-      ->with('veh', $veh)
-      ->with('user', $user)
-      ->with('order', $order);
+      return redirect('/vehicles');
   }
 
   public function edit($id)
@@ -96,7 +98,7 @@ class VehicleController extends Controller
         'passNumber'=>$p_num,
       ]
       );
-      return redirect('/Vehicles');
+      return redirect('/vehicles');
   }
 
   public function destroy($id)
@@ -105,6 +107,6 @@ class VehicleController extends Controller
     ->where('id', $id)
     ->delete();
 
-    return redirect('/allVehicles');
+    return redirect('/vehicles');
   }
 }
