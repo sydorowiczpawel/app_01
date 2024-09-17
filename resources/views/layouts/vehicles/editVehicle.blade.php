@@ -1,7 +1,7 @@
 @extends('layouts.app')
-  @section('leader_content')
-
+@section('leader_content')
   @foreach($veh as $object)
+    {{-- Nagłówek I - dane pojazdu--}}
     <table class="table table-striped table-hover">
       <thead>
         <th><center>{{ __('Formularz edycji danych pojazdu') }}</center></th>
@@ -10,6 +10,7 @@
         <td><center>{{$object -> manufacturer}} {{$object -> model}} nr {{ $object -> vehicle_number }}</center></td>
       </tbody>
     </table>
+    {{-- Nagłówek II - dane etatowego kierowcy--}}
     <table class="table table-striped table-hover">
       <tbody>
         <tr>
@@ -61,13 +62,6 @@
           </center></td>
         </thead>
       </table>
-      {{-- <div class="row mb-0">
-        <div class="col-md-6 offset-md-4">
-          <button type="submit" class="btn btn-primary">
-            {{ __('Przypisz kierowcę') }}
-          </button>
-        </div>
-      </div> --}}
     </form>
   @endforeach
 @endsection

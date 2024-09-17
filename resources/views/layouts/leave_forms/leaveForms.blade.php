@@ -1,14 +1,13 @@
 @extends('layouts.app')
 
-@if(Auth::user() -> job_name === 'admin' || Auth::user() -> job_name === 'dowódca kompanii')
-  @section('leader_content')
-    {{-- Tabela z nagłówkiem strony --}}
+@section('user_content')
+  @if(Auth::user() -> job_name === 'admin' || Auth::user() -> job_name === 'dowódca kompanii')
+    {{-- Tabela LEADERA z nagłówkiem strony --}}
     <table class="table table-striped table-hover">
       <thead>
         <th><center>ROZKAZY WYJAZDU</center></th>
       </thead>
     </table>
-
     {{-- Tabela z przyciskiem dodawania rozkazu --}}
     <table class="table table-striped table-hover">
       <tbody>
@@ -24,11 +23,11 @@
       </tbody>
     </table>
 
-    {{-- Treść strony --}}
+    {{-- Treść strony LEADERA--}}
     <table class="table table-striped table-hover">
       <thead>
         <th>numer</th>
-        @if(Auth::user() -> passNumber === 'AA001' || Auth::user() -> passNumber === 'AA002')
+        @if(Auth::user() -> job_name === 'admin' || Auth::user() -> job_name === 'dowódca kompanii')
           <th><center>kierowca</center></th>
         @endif
         <th><center>pojazd</center></th>
@@ -36,38 +35,38 @@
         <th><center>km po</center></th>
       </thead>
       <tbody>
-        <tr>
         @foreach($form as $object)
-          @if($object -> km_after_use === NULL)
-            {{-- Rozkaz niezakończony --}}
-            <td>{{ $object -> series }}</td>
-            @if(Auth::user() -> passNumber === 'AA001' || Auth::user() -> passNumber === 'AA002')
-              <td><center>{{ $object -> user_id }}</center></td>
+        <tr>
+            @if($object -> km_after_use === NULL)
+              {{-- Rozkaz niezakończony --}}
+              <td>{{ $object -> series }}</td>
+              @if(Auth::user() -> job_name === 'admin' || Auth::user() -> job_name === 'dowódca kompanii')
+                <td><center>{{ $object -> user_id }}</center></td>
+              @endif
+              <td><center>{{ $object -> veh_id }}</center></td>
+              <td></td>
+              <td>
+                <a href="/editLeaveForm/{{ $object -> id }}">
+                  <button type="button" class="btn btn-outline-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                      <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+                    </svg>
+                  </button>
+                </a>
+              </td>
+            @else
+              {{-- Rozkaz zakończony --}}
+              <td>{{ $object -> series }}</td>
+              @if(Auth::user() -> job_name === 'admin' || Auth::user() -> job_name === 'dowódca kompanii')
+                <td><center>{{ $object -> user_id }}</center></td>
+              @endif
+              <td><center>{{ $object -> veh_id }}</center></td>
+              <td><center>{{ $object -> km_before_use }}</center></td>
+              <td><center>{{ $object -> km_after_use }}</center></td>
             @endif
-            <td><center>{{ $object -> veh_id }}</center></td>
-            <td></td>
-            <td>
-              <a href="/editLeaveForm/{{ $object -> id }}">
-                <button type="button" class="btn btn-outline-secondary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
-                  </svg>
-                </button>
-              </a>
-            </td>
-          @else
-            {{-- Rozkaz zakończony --}}
-            <td>{{ $object -> series }}</td>
-            @if(Auth::user() -> passNumber === 'AA001' || Auth::user() -> passNumber === 'AA002')
-              <td><center>{{ $object -> user_id }}</center></td>
-            @endif
-            <td><center>{{ $object -> veh_id }}</center></td>
-            <td><center>{{ $object -> km_before_use }}</center></td>
-            <td><center>{{ $object -> km_after_use }}</center></td>
-          @endif
-        </tr>
-        @endforeach
+          </tr>
+          @endforeach
       </tbody>
     </table>
 
@@ -85,9 +84,53 @@
         </center></td>
       </tbody>
     </table>
-  @endsection
-@else
-    @section('user_content')
-      Acces denied
-    @endsection
-@endif
+  @else
+    {{-- Nagłówek USERA --}}
+    <table class="table table-striped table-hover">
+      <thead>
+        <th><center>Rozkazy wyjazdu użytkownika {{ Auth::user() -> rank }} {{ Auth::user() -> firstName }} {{ Auth::user() -> lastName }}</center></th>
+      </thead>
+    </table>
+
+    {{-- Treść strony USERA --}}
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Seria i numer</th>
+          <th><center>pojazd</center></th>
+          <th><center>km przed</center></th>
+          <th><center>km po</center></th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($form as $object)
+          <tr>
+            @if(Auth::user() -> passNumber === $object -> user_id)
+              <td>{{ $object -> series }}</td>
+              <td><center>{{ $object -> veh_id }}</center></td>
+
+              {{-- Rozkaz niezakończony --}}
+              @if($object -> km_after_use === NULL)
+                <td></td>
+                <td>
+                  <a href="/editLeaveForm/{{ $object -> id }}">
+                    <button type="button" class="btn btn-outline-secondary">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+                      </svg>
+                    </button>
+                  </a>
+                </td>
+              @else
+                {{-- Rozkaz zakończony --}}
+                <td><center>{{ $object -> km_before_use }}</center></td>
+                <td><center>{{ $object -> km_after_use }}</center></td>
+              @endif
+            @endif
+          </tr>
+        @endforeach
+      </tbody>
+    </table>
+  @endif
+@endsection

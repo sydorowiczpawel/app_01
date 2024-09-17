@@ -34,7 +34,7 @@ class UserController extends Controller
       ->with('l_f', $l_f);
   }
 
-  public function getSoldiers()
+  public function show_all()
   {
 
     // Kadra kierownicza
@@ -163,7 +163,7 @@ class UserController extends Controller
     ->where ('job_name', NULL)
     ->get();
 
-    return view ('layouts.soldiers.allSoldiers')
+    return view ('layouts.soldiers.soldiers')
     ->with('commander', $commander)
     ->with('boss', $boss)
     ->with('technician', $technician)
@@ -191,23 +191,19 @@ class UserController extends Controller
     ->with('others', $others);
   }
 
-  public function createSoldier()
+  public function create()
   {
-    return view('layouts.soldiers.addSoldier');
+    return view('layouts.soldiers.create_soldier');
   }
 
   public function store(Request $request, $id)
   {
-    // dd($id);
 
     $rank = $request->input('rank');
     $job_name = $request->input('job_name');
     $coy = $request->input('coy');
     $platoon = $request->input('platoon');
     $team = $request->input('team');
-    // $isActive = Integer(1);
-
-    // dd($rank, $job_name, $coy, $platoon, $team);
 
     DB::table("users")
     ->where('id', $id)
@@ -218,11 +214,10 @@ class UserController extends Controller
         'coy' => $coy,
         'platoon' => $platoon,
         'team' => $team,
-        // 'isActive' => $isActive,
       ]
     );
 
-    return redirect('/allSoldiers');
+    return redirect('/soldiers');
   }
 
   public function storeUser(Request $request)
@@ -255,7 +250,7 @@ class UserController extends Controller
         'is_active' => $isActive,
       ]
       );
-      return redirect('/allSoldiers');
+      return redirect('/soldiers');
   }
 
   public function show(string $id)
@@ -309,7 +304,7 @@ class UserController extends Controller
         ]
         );
 
-        return redirect('/allSoldiers');
+        return redirect('/soldiers');
   }
 
   public function activateUserForm($id)
@@ -324,7 +319,7 @@ class UserController extends Controller
       ->with('user', $user);
   }
 
-  public function destroy($id)
+  public function unactive_soldier($id)
   {
     $unactive = 'nieaktywny';
     $zero = 0;
@@ -342,15 +337,7 @@ class UserController extends Controller
       ]
     );
 
-    // DB::table('documents')
-    // ->where('passNumber', $passNumber)
-    // ->get();
-
-    // $users = DB::table('users')
-    // ->where(['id' => $id])
-    // ->delete();
-
-    return redirect('/allSoldiers');
+    return redirect('/soldiers');
   }
 
 }

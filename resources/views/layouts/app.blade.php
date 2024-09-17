@@ -90,36 +90,38 @@
         <div class="col-md-8">
           <div class="card">
             <div class="card-body">
+              @if(Auth::user() -> job_name === 'admin' || Auth::user() -> job_name === 'dowódca kompanii')
               {{-- Panel dowócy --}}
-              @if(Auth::user() -> passNumber === "AA001")
-                <table class="table table-stripped table-hover">
-                  <thead>
-                    <tr>
-                      <th><center>Panel dowódcy</center></th>
-                    </tr>
-                  </thead>
-                </table>
-                <table class="table table-stripped table-hover">
-                  <thead>
-                    <tr>
-                      <th><center><a href="/allSoldiers"><button class="btn btn-outline-warning btn-sm" type="button">Żołnierze</button></a></center></th>
-                      <th><center><a href="/vehicles"><button class="btn btn-outline-warning btn-sm">Pojazdy</button></a></center></th>
-                      <th><center><a href="/documents"><button class="btn btn-outline-warning btn-sm">Dokumenty</button></a></center></th>
-                      <th><center><a href="/leaveForms"><button class="btn btn-outline-warning btn-sm">Rozkazy wyjazdu</button></a></center></th>
-                      {{-- <th><a href="/unverifiedUsers"><button class="btn btn-outline-warning btn-sm">Niezweryfikowani użytkownicy</button></a></th> --}}
-                    </tr>
-                  </thead>
-                </table>
+              {{-- Nagłówek --}}
+              <table class="table table-stripped table-hover">
+                <thead>
+                  <tr>
+                    <th><center>Panel dowódcy</center></th>
+                  </tr>
+                </thead>
+              </table>
+              {{-- Przyciski --}}
+              <table class="table table-stripped table-hover">
+                <thead>
+                  <tr>
+                    <th><center><a href="/soldiers"><button type="button" class="btn btn-outline-primary">Żołnierze</button></a></center></th>
+                    <th><center><a href="/vehicles"><button type="button" class="btn btn-outline-primary">Pojazdy</button></a></center></th>
+                    <th><center><a href="/documents"><button type="button" class="btn btn-outline-primary">Dokumenty</button></a></center></th>
+                    <th><center><a href="/leaveForms"><button type="button" class="btn btn-outline-primary">Rozkazy wyjazdu</button></a></center></th>
+                    {{-- <th><a href="/unverifiedUsers"><button class="btn btn-outline-warning btn-sm">Niezweryfikowani użytkownicy</button></a></th> --}}
+                  </tr>
+                </thead>
+              </table>
+              {{-- kontent administratora i dowódcy kompanii --}}
+              @yield('leader_content')
               @endif
+              {{-- kontent żołnierzy --}}
+              @yield('user_content')
+              {{-- kontent niezalogowanego użytkownika --}}
+              @yield('before_login_content')
+              {{-- kontent niezalogowanego użytkownika --}}
+              @yield('developer_content')
             </div>
-            {{-- kontent administratora i dowódcy kompanii --}}
-            @yield('leader_content')
-            {{-- kontent żołnierzy --}}
-            @yield('user_content')
-            {{-- kontent niezalogowanego użytkownika --}}
-            @yield('before_login_content')
-            {{-- kontent niezalogowanego użytkownika --}}
-            @yield('developer_content')
           </div>
         </div>
       </div>

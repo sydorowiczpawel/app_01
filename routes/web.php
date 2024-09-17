@@ -28,16 +28,16 @@ Route::get('/deleteVehicle/{id}', [App\Http\Controllers\VehicleController::class
 Route::get('/userVehicles/{id}', [App\Http\Controllers\VehicleController::class, 'userVeh']);
 
 // USER
-Route::get('/allSoldiers', [App\Http\Controllers\UserController::class, 'getSoldiers']);
+Route::get('/soldiers', [App\Http\Controllers\UserController::class, 'show_all']);
 Route::get('/personalFile/{pass_number}', [App\Http\Controllers\UserController::class, 'personalFile']);
-Route::get('/activateUserForm/{id}', [App\Http\Controllers\UserController::class, 'activateUserForm']);
 Route::get('/personalFile/editSoldier/{id}', [App\Http\Controllers\UserController::class, 'edit']);
+Route::get('/newSoldier', [App\Http\Controllers\UserController::class, 'create']);
 Route::post('/updateSoldier/{id}', [App\Http\Controllers\UserController::class, 'update']);
-Route::get('/addSoldier', [App\Http\Controllers\UserController::class, 'createSoldier']);
 Route::post('/storeSoldier', [App\Http\Controllers\UserController::class, 'storeUser']);
 Route::post('/storeAssigns/{id}', [App\Http\Controllers\UserController::class, 'store']);
 Route::get('/assignSoldier/{id}', [App\Http\Controllers\UserController::class, 'assign']);
-Route::get('/deleteSoldier/{id}', [App\Http\Controllers\UserController::class, 'destroy']);
+Route::get('/activateUserForm/{id}', [App\Http\Controllers\UserController::class, 'activateUserForm']);
+Route::get('/personalFile/unactive/{id}', [App\Http\Controllers\UserController::class, 'unactive_soldier']);
 
 // DOCS
 Route::get('/allDocuments', [App\Http\Controllers\DocumentController::class, 'allDocs']);

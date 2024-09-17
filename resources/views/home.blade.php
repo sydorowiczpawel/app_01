@@ -1,53 +1,50 @@
 @extends('layouts.app')
 @section('user_content')
 
-<?php
-  $user = Auth::user();
-?>
+  <?php
+    $user = Auth::user();
+  ?>
 
-<table class="table table-striped table-hover">
-  <tbody>
-    <th>{{ $user -> firstName }} {{ $user -> lastName }}</></th>
-    <th>{{ $user -> passNumber }}</></th>
-    <th><center>{{ date('d-m-Y') }}</center></th>
-  </tbody>
-</table>
+  {{-- Nagłówek tabeli --}}
+  <table class="table table-striped table-hover">
+    <tbody>
+      <th>{{ $user -> firstName }} {{ $user -> lastName }}</></th>
+      <th>{{ $user -> passNumber }}</></th>
+      <th><center>{{ date('d-m-Y') }}</center></th>
+    </tbody>
+  </table>
+  {{-- jakiś if --}}
   @if (session('status'))
     <div class="alert alert-success" role="alert">
       {{ session('status') }}
     </div>
   @endif
+  
   @if(Auth::user() -> is_active === 1 )
-    <table>
+    <table class="table table-striped table-hover">
       <thead>
         <td>
           <center>
-            {{-- <a href="/userDocuments/{{ $user -> passNumber }}"> --}}
-            <a href="/Documents">
+            <a href="/documents">
               <button type="button" class="btn btn-outline-secondary">Dokumenty</button>
             </a>
           </center>
         </td>
         <td>
           <center>
-            <a href="/Vehicles">
+            <a href="/vehicles">
               <button type="button" class="btn btn-outline-secondary">Pojazdy</button>
             </a>
           </center>
         </td>
         <td>
           <center>
-            <a href="/LeaveForms">
+            <a href="/leaveForms">
               <button type="button" class="btn btn-outline-secondary">Rozkazy wyjazdu</button>
             </a>
           </center>
         </td>
       </thead>
-      <tbody>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tbody>
     </table
   @else
     <table class="table table-striped table-hover">
