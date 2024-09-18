@@ -36,7 +36,7 @@
 </table>
 {{-- Treść --}}
 <table class="table table-striped table-hover">
-  @if(Auth::user() -> passNumber === 'AA001' || Auth::user() -> passNumber === 'AA002')
+  @if(Auth::user() -> job_name === 'admin' || Auth::user() -> job_name === 'dowódca kompanii')
     <thead>
       <th>Seria/numer</th>
       <th><center>data wystawienia</center></th>
