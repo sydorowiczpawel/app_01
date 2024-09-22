@@ -40,13 +40,13 @@ Route::get('/activateUserForm/{id}', [App\Http\Controllers\UserController::class
 Route::get('/personalFile/unactive/{id}', [App\Http\Controllers\UserController::class, 'unactive_soldier']);
 
 // DOCS
-Route::get('/allDocuments', [App\Http\Controllers\DocumentController::class, 'allDocs']);
-// Route::get('/addDoc', [App\Http\Controllers\DocumentController::class, 'createEmpty']);
 Route::get('/newDocument', [App\Http\Controllers\DocumentController::class, 'create_empty']);
 Route::get('/newDocument/{passNumber}', [App\Http\Controllers\DocumentController::class, 'create_userID']);
 Route::post('/storeDocument', [App\Http\Controllers\DocumentController::class, 'store']);
 Route::post('/storeDocument/{id}', [App\Http\Controllers\DocumentController::class, 'store_userID']);
-Route::get('documents', [App\Http\Controllers\DocumentController::class, 'show']);
+Route::get('documents', [App\Http\Controllers\DocumentController::class, 'show_all']);
+Route::get('documents/active', [App\Http\Controllers\DocumentController::class, 'show_active']);
+Route::get('documents/unactive', [App\Http\Controllers\DocumentController::class, 'show_unactive']);
 
 
 // Leave Forms

@@ -2,6 +2,10 @@
 @section('user_content')
 
 <?php
+
+  $i = 1;
+  $today = date('Y-m-d');
+
   $users = DB::table('users')
   ->get();
 
@@ -13,6 +17,7 @@
   $userDocs = DB::table('documents')
   ->where('passNumber', $p_num)
   ->get();
+  // $hour = new dateTime();
 ?>
 
 {{-- Mała tabela --}}
@@ -34,6 +39,25 @@
     </th>
   </tbody>
 </table>
+<table class="table table-striped table-hover">
+  <thead>
+    <td><center>
+      <a href="/documents">
+        <button type="button" class="btn btn-outline-secondary">Wszystkie</button>
+      </a>
+    </center></td>
+    <td><center>
+      <a href="/documents/active">
+        <button type="button" class="btn btn-outline-secondary">Aktualne</button>
+      </a>
+    </center></td>
+    <td><center>
+      <a href="/documents/unactive">
+        <button type="button" class="btn btn-outline-secondary">Przedawnione</button>
+      </a>
+    </center></td>
+  </thead>
+</table>
 {{-- Treść --}}
 <table class="table table-striped table-hover">
   @if(Auth::user() -> job_name === 'admin' || Auth::user() -> job_name === 'dowódca kompanii')
@@ -41,22 +65,35 @@
       <th>Seria/numer</th>
       <th><center>data wystawienia</center></th>
       <th><center>ważny do dnia</center></th>
+      <th><center>pozostało (dni)</center></th>
       <th><center>właściciel</center></th>
     </thead>
-    @foreach($doc as $object)
-      <tbody>
-        <td>{{ $object -> doc_name }}</td>
-        <td><center>{{ $object -> start_date}}</center></td>
-        <td><center>{{ $object -> end_date}}</center></td>
-        <td><center>
-          <a href="/personalFile/{{ $object -> passNumber }}">
-            <button type="button" class="btn btn-outline-secondary">
-              {{ $object -> passNumber }}
-            </button>
-          </a>
-        </center></td>
+    <tbody>
+      @foreach($doc as $object)
+      <?php
+      $today = new DateTime(date("Y-m-d"));
+      $current  = $object -> end_date;
+      // $days = new DateTimie(days($current ==- $today));
+      ?>
+      <tr>
+          <td>{{ $object -> doc_name }}</td>
+          <td><center>{{ $object -> start_date}}</center></td>
+          <td><center>{{ $object -> end_date}}</center></td>
+          @if($today)
+          <td><center>wygasł</center></td>
+          @else
+          <td><center>{{ $days }}</center></td>
+          @endif
+          <td><center>
+            <a href="/personalFile/{{ $object -> passNumber }}">
+              <button type="button" class="btn btn-outline-secondary">
+                {{ $object -> passNumber }}
+              </button>
+            </a>
+          </center></td>
+        </tr>
+        @endforeach
       </tbody>
-    @endforeach
   @else
     <thead>
       <th>Seria/numer</th>

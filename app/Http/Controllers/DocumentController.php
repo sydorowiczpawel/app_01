@@ -4,15 +4,47 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models;
+use Illuminate\Support\Carbon;
 
 
 class DocumentController extends Controller
 {
 
-  public function show()
+  public function show_all()
   {
     $doc = DB::table('documents')
-    // ->where('passNumber', $id)
+    ->orderBy('end_date')
+    ->get();
+
+    $users = DB::table('users')
+    ->get();
+
+    return view('layouts.documents.documents')
+    ->with('doc', $doc)
+    ->with('users', $users);
+  }
+
+  public function show_active()
+  {
+
+    $doc = DB::table('documents')
+    ->orderBy('end_date')
+    ->where('doc_name', 'kontrakt')
+    ->get();
+
+    $users = DB::table('users')
+    ->get();
+
+    return view('layouts.documents.documents')
+    ->with('doc', $doc)
+    ->with('users', $users);
+  }
+
+  public function show_unactive()
+  {
+    $doc = DB::table('documents')
+    ->orderBy('end_date')
     ->get();
 
     $users = DB::table('users')
@@ -45,6 +77,7 @@ class DocumentController extends Controller
   public function store(Request $request)
   {
       $name = $request->input('doc_name');
+      $number = $request->input('doc_number');
       $owner = $request->input('doc_owner');
       $date_from = $request->input('from');
       $date_to = $request->input('to');
@@ -53,6 +86,7 @@ class DocumentController extends Controller
       ->insert(
         [
           'doc_name' => $name,
+          'doc_number' => $number,
           'passNumber' => $owner,
           'start_date' => $date_from,
           'end_date' => $date_to
@@ -65,6 +99,7 @@ class DocumentController extends Controller
   public function store_userID(Request $request, $id)
   {
       $name = $request->input('doc_name');
+      $number = $request->input('doc_number');
       $owner = $request->input('doc_owner');
       $date_from = $request->input('from');
       $date_to = $request->input('to');
@@ -73,6 +108,7 @@ class DocumentController extends Controller
       ->insert(
         [
           'doc_name' => $name,
+          'doc_number' => $number,
           'passNumber' => $owner,
           'start_date' => $date_from,
           'end_date' => $date_to

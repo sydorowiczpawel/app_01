@@ -39,6 +39,19 @@
       </div>
     </div>
 
+    <!-- Type document number -->
+    <div class="form-group row">
+      <label for="doc_number" class="col-md-4 col-form-label text-md-right">{{ __('Numer dokumentu') }}</label>
+      <div class="col-md-6">
+        <input id="doc_number" type="text" class="form-control" @error('doc_number') is-invalid @enderror name="doc_number" value="{{ old('doc_number') }}" required autocomplete="doc_number" autofocus>
+
+        @error('doc_number')
+          <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+        @enderror
+
+      </div>
+    </div>
+
     <!-- Select document Owner -->
     <div class="form-group row">
       <label for="doc_owner" class="col-md-4 col-form-label text-md-right">{{ __('Wybierz właściciela') }}</label>

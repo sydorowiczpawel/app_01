@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('passNumber');
             $table->foreign('passNumber')->references('passNumber')->on('users');
             $table->string('doc_name');// nazwa dokumentu
+            $table->string('doc_number')->unique();// numer dokumentu
             $table->date('start_date');// data rozpoczecia
             $table->date('end_date');// data zakonczenia
             $table->timestamps();

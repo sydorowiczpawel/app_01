@@ -77,6 +77,13 @@
       </tr>
       </tbody>
     </table>
+    <table class="table table-striped table-hover">
+      <thead>
+        <th>
+          <center>Niezakończone rozkazy wyjazdu</center>
+        </th>
+      </thead>
+    </table>
   @else
     <table class="table table-striped table-hover">
       <thead>
