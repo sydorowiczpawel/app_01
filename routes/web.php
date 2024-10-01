@@ -44,7 +44,7 @@ Route::get('/newDocument', [App\Http\Controllers\DocumentController::class, 'cre
 Route::get('/newDocument/{passNumber}', [App\Http\Controllers\DocumentController::class, 'create_userID']);
 Route::post('/storeDocument', [App\Http\Controllers\DocumentController::class, 'store']);
 Route::post('/storeDocument/{id}', [App\Http\Controllers\DocumentController::class, 'store_userID']);
-Route::get('documents', [App\Http\Controllers\DocumentController::class, 'show_all']);
+Route::get('documents/all', [App\Http\Controllers\DocumentController::class, 'show_all']);
 Route::get('documents/active', [App\Http\Controllers\DocumentController::class, 'show_active']);
 Route::get('documents/unactive', [App\Http\Controllers\DocumentController::class, 'show_unactive']);
 

@@ -106,7 +106,7 @@
                   <tr>
                     <th><center><a href="/soldiers"><button type="button" class="btn btn-outline-primary">Żołnierze</button></a></center></th>
                     <th><center><a href="/vehicles"><button type="button" class="btn btn-outline-primary">Pojazdy</button></a></center></th>
-                    <th><center><a href="/documents"><button type="button" class="btn btn-outline-primary">Dokumenty</button></a></center></th>
+                    <th><center><a href="/documents/all"><button type="button" class="btn btn-outline-primary">Dokumenty</button></a></center></th>
                     <th><center><a href="/leaveForms"><button type="button" class="btn btn-outline-primary">Rozkazy wyjazdu</button></a></center></th>
                     {{-- <th><a href="/unverifiedUsers"><button class="btn btn-outline-warning btn-sm">Niezweryfikowani użytkownicy</button></a></th> --}}
                   </tr>

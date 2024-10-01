@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class DocumentController extends Controller
@@ -13,6 +15,8 @@ class DocumentController extends Controller
 
   public function show_all()
   {
+    $p_num = Auth::user() -> passNumber;
+
     $doc = DB::table('documents')
     ->orderBy('end_date')
     ->get();
@@ -20,39 +24,62 @@ class DocumentController extends Controller
     $users = DB::table('users')
     ->get();
 
+    $userDocs = DB::table('documents')
+    ->where('passNumber', $p_num)
+    ->get();
+
     return view('layouts.documents.documents')
     ->with('doc', $doc)
-    ->with('users', $users);
+    ->with('users', $users)
+    ->with('userDocs', $userDocs);
   }
 
   public function show_active()
   {
+    $p_num = Auth::user() -> passNumber;
+    $today = date('Y-m-d');
 
     $doc = DB::table('documents')
+    ->where('end_date', '>', $today)
     ->orderBy('end_date')
-    ->where('doc_name', 'kontrakt')
     ->get();
 
     $users = DB::table('users')
     ->get();
 
+    $userDocs = DB::table('documents')
+    ->where('passNumber', $p_num)
+    ->where('end_date', '>', $today)
+    ->get();
+
     return view('layouts.documents.documents')
     ->with('doc', $doc)
-    ->with('users', $users);
+    ->with('users', $users)
+    ->with('userDocs', $userDocs);
   }
 
   public function show_unactive()
   {
+    $p_num = Auth::user() -> passNumber;
+    $today = date('Y-m-d');
+
     $doc = DB::table('documents')
+    ->where('end_date', '<', $today)
     ->orderBy('end_date')
     ->get();
 
     $users = DB::table('users')
     ->get();
 
+    $userDocs = DB::table('documents')
+    ->where('passNumber', $p_num)
+    ->where('end_date', '<', $today)
+    ->get();
+
     return view('layouts.documents.documents')
     ->with('doc', $doc)
-    ->with('users', $users);
+    ->with('users', $users)
+    ->with('userDocs', $userDocs);
   }
 
   public function create_empty()
@@ -93,7 +120,7 @@ class DocumentController extends Controller
         ]
         );
 
-        return redirect('/documents');
+        return redirect('/documents/all');
   }
 
   public function store_userID(Request $request, $id)
@@ -115,7 +142,7 @@ class DocumentController extends Controller
         ]
         );
 
-        return redirect('/documents');
+        return redirect('/documents/all');
   }
 
   public function edit(string $id)
