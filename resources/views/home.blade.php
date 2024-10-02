@@ -26,7 +26,7 @@
       <thead>
         <td>
           <center>
-            <a href="/documents">
+            <a href="/documents/all">
               <button type="button" class="btn btn-outline-secondary">Dokumenty</button>
             </a>
           </center>

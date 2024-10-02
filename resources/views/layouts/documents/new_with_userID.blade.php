@@ -42,7 +42,8 @@
         <div class="form-group row">
           <label for="doc_owner" class="col-md-4 col-form-label text-md-right">{{ __('Wybierz właściciela') }}</label>
           <div class="col-md-6">
-              <input id="doc_owner" type="text" class="form-control" @error('doc_owner') is-invalid @enderror name="doc_owner" value="{{ $object -> passNumber }}" required autocomplete="doc_owner" autofocus>
+              {{-- <input id="doc_owner" type="text" class="form-control" @error('doc_owner') is-invalid @enderror name="doc_owner" value="{{ $object -> passNumber }}" required autocomplete="doc_owner" autofocus> --}}
+              <label class="form-control" id="doc_owner">{{ Auth::user() -> firstName }}</label>
 
             @error('doc_owner')
               <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
