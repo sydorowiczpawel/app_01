@@ -14,13 +14,17 @@
     <table class="table table-striped table-hover">
       <tbody>
         <tr>
-          @foreach($users as $user)
-            <td>
-              @if($object -> passNumber === $user -> passNumber)
+          @if($object -> passNumber !== NULL)
+            @foreach($users as $user)
+              <td>
                 <center>Obecny etatowy kierowca: {{ $user -> rank }} {{ $user -> firstName }} {{ $user -> lastName }} - {{ $user -> passNumber }}</center>
-              @endif
+              </td>
+            @endforeach
+          @else
+            <td>
+                <center>Kierowca nieprzydzielony</center>
             </td>
-          @endforeach
+            @endif
         </tr>
       </tbody>
     </table>
